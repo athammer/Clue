@@ -12,6 +12,7 @@ public class PlayerTest {
 	public void validLocation(){
 		assertTrue(player.getPlayerLocation() != null);
 	}
+	
 
 	
 

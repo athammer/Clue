@@ -35,4 +35,18 @@ public class Player {
 		return b;
 	}
 	
+	public boolean checkCards(String[] cards){
+		boolean cardFound = false;
+		for(String otherCard : cards){
+			for(String playerCard : _playerCards){
+				if(otherCard == playerCard){
+					cardFound = true;
+					//give the player the card so he knows that he was wrong(?)
+					return cardFound;
+				}
+			}
+		}
+		return cardFound;
+	}
+	
 }

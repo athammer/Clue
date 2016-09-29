@@ -4,5 +4,4 @@ public class BoardLogic {
 	public BoardLogic(){
 		
 	}
-
 }
