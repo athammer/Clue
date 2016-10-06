@@ -1,11 +1,11 @@
 package code.player;
 
 public class Player {
-	String _playerName;
-	String[] _playerCards;
-	Object[][] _playerLocation;
-	int _startPosition;
-	boolean _loserPlayer = false;
+	String _playerName; //player's name
+	String[] _playerCards; //player's cards
+	Object[][] _playerLocation; //where player is located
+	int _startPosition; //who goes first
+	boolean _loserPlayer = false; //has the player lost
 	
 	public Player(){
 
@@ -28,6 +28,17 @@ public class Player {
 	}
 	public boolean getDidPlayerLose(){
 		return _loserPlayer;
+	}
+	
+	
+	
+	public boolean setName(String name){
+		if(name != null){
+			_playerName = name;
+			return true;
+		}
+		return false;
+
 	}
 	
 	public boolean setLoserPlayer(boolean b){
