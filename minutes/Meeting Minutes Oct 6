@@ -7,14 +7,16 @@ Stories completed:
 	None first week.
 	
 Stories worked on:
-	None first week.
+	moveLegality
+	suggestionProof
 	
 Goals for next meeting:
-	Working and figuring out what our first story will be.
-	Setting up BitBucket and Git for all team members.
-	Work on player user story cards.
-	Set up board for game.
+	Keep cleaning up the classes and finishing the two user stories.
+	Work on documentation
+	Work on jUnit tests for two user stories(important)
+	Think out more logic for the two user stories.
 	
 Scheduled future meeting:
 	Lab meeting on Tuesday at 12PM
+	Possible Weekend meeting.
 	Weekly meeting on Thursday at 5:00PM
