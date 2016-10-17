@@ -42,6 +42,7 @@ public class Main {
 		}
 	}
 	
+	//TODO Fill out Java doc
 	public Player[] getPlayers(){ //currently useless as the player class handles if the player lost
 		return _playerArray;
 	}
