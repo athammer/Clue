@@ -55,8 +55,9 @@ public class MoveLegalityTest {
 	public void validLocation(){
 		Board testBoard = new Board();
 		Player testPlayer = new Player();
-		//TODO Check all rooms and some out of bound areas and see if they are null
-		//TODO finish the board so the rooms have nulls (other then door ofc)
+		assertEquals(testBoard.isValidLocation(6, 0), false); //outside map
+		assertEquals(testBoard.isValidLocation(7, 0), true); //pathway
+		//we already have a function/method for this so not very exciting as all the checks are already there.
 	}
 	@Test
 	public void playerRollAndMoveTest(){
@@ -125,7 +126,28 @@ public class MoveLegalityTest {
 		assertEquals(testPlayer.getMovesLeft(), 0 /*moving to special room should reset moves */, 0.001);
 		assertTrue(successOrFail);
 		//assertFalse(successOrFail1);
-	
+	}
+	@Test
+	public void playerBlocking(){
+		Board testBoard = new Board();
+		String[][] board = testBoard.getBoard();
+		Player testPlayer = new Player();
+		Player testPlayer1 = new Player();
+		PlayerLogic playerLogic = new PlayerLogic();
+		DiceRoll diceRoll = new DiceRoll();
+		int playerMoves = diceRoll.rollOneDice() + 1; //just incase player rolls a 1
+		//setting up player
+		testPlayer.setMovesLeft(playerMoves);
+		testPlayer1.setMovesLeft(playerMoves);
+		testPlayer.setXYCord(0, 0); //the special room "study"
+		testPlayer1.setXYCord(1, 0); //the special room "study"
+		boolean successOrFail = playerLogic.movePlayer(testBoard, testPlayer, 1, 0);
+		/*
+		 * uncomment below once we finish the paths as default value for a string array is null
+		 * boolean successOrFail1 = playerLogic.movePlayer(testBoard, testPlayer, 19, 19); //should be false as moves should be run out
+		 */
+		assertTrue(successOrFail);
+		//assertFalse(successOrFail1);
 	}
 	
 

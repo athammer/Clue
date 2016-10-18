@@ -67,7 +67,6 @@ public class Board {
 		
 		
 		//TODO Rooms have to be filled with null(other then infront of the doors), so users cannot go through rooms.
-		//TODO make the pathway with the value of "empty"
 		
 		
 		//Study
@@ -113,6 +112,13 @@ public class Board {
 		//Kitchen
 		String ktchn = "kitchen";
 		board[18][19] = ktchn;
+		
+		//Staircase
+		//this value is "inside" of the staircase so you can only be moved there by guessing and not by moving normaly
+		board[9][10] = "stair case";
+		
+		//StartLocations
+		//TODO finish this
 		
 		//TODO finish up the rooms and add nulls to everwhere but the doors for the rooms
 		//TODO put in the "staircase".
