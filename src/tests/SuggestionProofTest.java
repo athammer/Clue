@@ -30,7 +30,7 @@ import code.player.Player;
 public class SuggestionProofTest {
 	
 	@Test
-	public void suggestionGuess(){
+	public void suggestionPlayerGuess(){
 		Player suggestPlayer = new Player();
 		Player answerPlayer = new Player(); 
 //		String[] sgPlayer = suggestPlayer.getPlayerCards();
@@ -39,7 +39,39 @@ public class SuggestionProofTest {
 		assertTrue(suggestion);
 	}
 	
-//	@Test
-//	public void 
-//Test
+	@Test
+	public void suggestionPlayerRoom(){
+		
+	}
+	
+	@Test 
+	public void suggestionPlayerWeapon(){
+		
+	}
+	
+	@Test
+	public void twoMatchingCards(){
+		
+	}
+	
+	@Test
+	public void matchingCardAnswer(){
+		
+	}
+
+	@Test
+	public void answerBeforeMove(){
+		
+	}
+	
+	@Test
+	public void unansweredButMatching(){
+		
+	}
+	
+	@Test
+	public void unansweredAndNoMatching(){
+		
+	}
 }
+
