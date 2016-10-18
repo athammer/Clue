@@ -25,7 +25,7 @@ import code.player.Player;
 * not done(surround entrance with nulls)
 
 * Test that your project correctly identifies as legal a move that just uses the a secret passageway;
-* not done (will get to this, just need to figure out where they are.)
+* pretty much done(could be better but effectivly done as it does check what it asks)
 
 * Test that your project correctly identifies as illegal a move that goes more squares than the die roll;
 * done
