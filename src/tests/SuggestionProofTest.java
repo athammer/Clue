@@ -59,17 +59,17 @@ public class SuggestionProofTest {
 		
 	}
 
-	@Test
+	@Test //Garrett
 	public void answerBeforeMove(){
 		
 	}
 	
-	@Test
+	@Test  //Garrett
 	public void unansweredButMatching(){
 		
 	}
 	
-	@Test
+	@Test  //Garrett
 	public void unansweredAndNoMatching(){
 		
 	}
