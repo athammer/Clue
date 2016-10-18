@@ -6,7 +6,9 @@ public class Player {
 	int _playerXCords;
 	int _playerYCords;
 	int _startPosition; //who goes first
+	int _movesLeft; //how many times a player can move his/her character one space
 	boolean _loserPlayer = false; //has the player lost
+	
 	
 	
 	public Player(){
@@ -41,6 +43,10 @@ public class Player {
 	public boolean getDidPlayerLose(){
 		return _loserPlayer;
 	}
+	//TODO Fill out Java doc
+	public int movesLeft(){
+		return _movesLeft;
+	}
 	
 	
 	//TODO Fill out Java doc
@@ -58,24 +64,25 @@ public class Player {
 		return b;
 	}
 	//TODO Fill out Java doc
-	public boolean setXCord(int x){
+	public boolean setMovesLeft(int movesLeft){
 		//TODO Import NullRefExcption or do this sanity checking another way.
 		/*
 		if(x == null){
 			throw new NullReferenceException;
 		}
 		*/
-		_playerXCords = x;
+		_movesLeft = movesLeft;
 		return true;
 	}
 	//TODO Fill out Java doc
-	public boolean setYCord(int y){
+	public boolean setXYCord(int x, int y){
 		//TODO Import NullRefExcption or do this sanity checking another way.
 		/*
 		if(y == null){
 			throw new NullReferenceException;
 		}
 		*/
+		_playerXCords = x;
 		_playerYCords = y;
 		return true;
 	}
@@ -92,6 +99,20 @@ public class Player {
 			}
 		}
 		return cardFound;
+	}
+	
+	//TODO Fill out Java doc
+	public boolean hasMovesLeft(){
+		if(_movesLeft > 0){
+			return true;
+		}
+		return false;
+
+	}
+	
+	public int getMovesLeft(){
+		return _movesLeft;
+
 	}
 	
 }

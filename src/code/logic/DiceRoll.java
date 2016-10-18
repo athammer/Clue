@@ -8,7 +8,7 @@ public class DiceRoll {
 	public int rollOneDice(){
 		Random rand = new Random();
 		int randomNum = rand.nextInt((6 - 1) + 1) + 1;
-		return randomNum; //should do a check to see if this is really 1-6
+		return randomNum; //TODO should do a check to see if this is really 1-6
 	}
 	
 	//TODO Fill out Java doc
@@ -19,7 +19,7 @@ public class DiceRoll {
 		int randomNum1 = rand.nextInt((6 - 1) + 1) + 1;
 		dicerolls[0] = randomNum;
 		dicerolls[1] = randomNum1;
-		return dicerolls; //should do a check to see if this is really 1-6
+		return dicerolls; //TODO should do a check to see if this is really 1-6
 	}
 
 }

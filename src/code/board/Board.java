@@ -6,20 +6,28 @@ public class Board {
 	//http://flockofnerds.com/wp-content/uploads/2014/11/clue-board.jpg Board game
 	
 	//TODO Fill out Java doc
-	String[][] board = new String[24][23]; //Height: 25 (-1), Width: 24 (-1), 600 possible tiles. Top left is [0][0]
+	String[][] board = new String[25][24]; //Height: 25, Width: 24, 600 possible tiles. Top left is [0][0]
 	//The movement will have to check if the player goes out of bounds of the array and handle the error by not letting him move there.
-	
 	//TODO Fill out Java doc
 	public Board(){
+		for (int j = 0; j < board[0].length; j++){
+			for (int i = 0; i < board.length; i++){
+				board[i][j] = "empty"; //pretty iffy
+				System.out.println(i + ' ' + j);
+		    	 
+			}
+		}
+		
+		
 		//Walls within the array
-		board[0][6] = null;
+		board[0][23] = null; //6
 		board[0][9] = null;
 		board[0][15] = null;
 		board[0][17] = null;
 		board[4][0] = null;
-		board[6][23] = null;
+		board[6][23] = null; //23
 		board[6][0] = null;
-		board[8][23] = null;
+		board[8][23] = null; //23
 		board[10][0] = null;
 		board[11][0] = null;
 		board[16][23] = null;
@@ -99,8 +107,13 @@ public class Board {
 	}
 	
 	//TODO Fill out Java doc
+	public void setBoard(String value, int x, int y){
+		board[x][y] = value;
+	}
+	
+	//TODO Fill out Java doc
 	public boolean isValidLocation(int x, int y){ //will probably get called a lot.
-		if(board[x][y] != null){
+		if(board[x][y] != null && board[x][y] == "empty"){ //checks if it is valid and if a player is already there.
 			return true; //congrats
 		}//else
 		return false;
@@ -116,16 +129,9 @@ public class Board {
 		int oldXPosition = player.getPlayerXCord();
 		int oldYPosition = player.getPlayerYCord();
 		int moveCount = 0;
-		if(oldXPosition < x){
-			moveCount += 1;
-		}
-		if(oldYPosition < y){
-			moveCount += 1;
-		}
-		if(moveCount >= 2){
-			return false;
-		}
-		
+		if(oldXPosition < x) { moveCount += 1; } //should work
+		if(oldYPosition < y) { moveCount += 1; }
+		if(moveCount >= 2) { return false; }
 		return true;	
 	}
 }
