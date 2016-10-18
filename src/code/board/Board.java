@@ -67,6 +67,7 @@ public class Board {
 		
 		
 		//TODO Rooms have to be filled with null(other then infront of the doors), so users cannot go through rooms.
+		//TODO make the pathway with the value of "empty"
 		
 		
 		//Study
@@ -114,6 +115,7 @@ public class Board {
 		board[18][19] = ktchn;
 		
 		//TODO finish up the rooms and add nulls to everwhere but the doors for the rooms
+		//TODO put in the "staircase".
 		
 	}
 	
