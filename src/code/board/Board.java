@@ -4,6 +4,7 @@ import code.player.Player;
 
 public class Board {
 	//http://flockofnerds.com/wp-content/uploads/2014/11/clue-board.jpg Board game
+	//https://s-media-cache-ak0.pinimg.com/originals/8d/4a/95/8d4a95cfddea78bcee58a7eb243ceb93.jpg
 	
 	//TODO Fill out Java doc
 	String[][] board = new String[25][24]; //Height: 25, Width: 24, 600 possible tiles. Top left is [0][0]
@@ -97,6 +98,21 @@ public class Board {
 		board[12][1] = BR;
 		board[15][5] = BR;
 		
+		//Conservatory
+		String cty = "conservatory";
+		board[19][4] = cty;
+		
+		//Ball Room
+		String BlR = "ball room";
+		board[19][8] = BlR;
+		board[19][15] = BlR;
+		board[17][9] = BlR;
+		board[17][14] = BlR;
+		
+		//Kitchen
+		String ktchn = "kitchen";
+		board[18][19] = ktchn;
+		
 		//TODO finish up the rooms and add nulls to everwhere but the doors for the rooms
 		
 	}
@@ -112,7 +128,17 @@ public class Board {
 	}
 	
 	//TODO Fill out Java doc
+	public String getPlayerBoardValue(Player player){
+		return board[player.getPlayerXCord()][player.getPlayerYCord()];
+	}
+	
+	//TODO Fill out Java doc
 	public boolean isValidLocation(int x, int y){ //will probably get called a lot.
+		if(isSpecialRoom(x, y)){
+			//it's a special room so more then one user can be here.
+			return true;
+			
+		}
 		if(board[x][y] != null && board[x][y] == "empty"){ //checks if it is valid and if a player is already there.
 			return true; //congrats
 		}//else
@@ -126,12 +152,109 @@ public class Board {
 	//by doing this we kidna force the user to select each location he wants to move one by one till he runs out of moves.
 	//roll a 7, you get to move 7 times one space at a time(not like we get points off for it)
 	public boolean moveCorrectly(int x, int y, Player player){
+		
+		//kitchen->study, conservatory->lounge, study->kitchen, lounge->conservatory
 		int oldXPosition = player.getPlayerXCord();
 		int oldYPosition = player.getPlayerYCord();
+		if(oldXPosition == x && oldYPosition == y){
+			//can't move in the same spot.
+			return false;
+		}
 		int moveCount = 0;
 		if(oldXPosition < x) { moveCount += 1; } //should work
 		if(oldYPosition < y) { moveCount += 1; }
-		if(moveCount >= 2) { return false; }
+		String room = getSpecialRoom(player.getPlayerXCord(),player.getPlayerYCord());
+		if(room != null && (room.equals("kitchen") || room.equals("study") || room.equals("conservatory") || room.equalsIgnoreCase("lounge"))){
+			//the above if statement checks if user is currently in a room they can teleport
+			//the stuff below allows people to tp using secret rooms
+			if(room.equals("kitchen") && getSpecialRoom(x,y).equals("study")){
+				player.setMovesLeft(1); //set to one so users cant keep moving once tping
+				return true;
+			}
+			if(room.equals("study") && getSpecialRoom(x,y).equals("kitchen")){
+				player.setMovesLeft(1);
+				return true;
+			}
+			if(room.equals("conservatory") && getSpecialRoom(x,y).equals("lounge")){
+				player.setMovesLeft(1);
+				return true;
+			}
+			if(room.equals("lounge") && getSpecialRoom(x,y).equals("conservatory")){
+				player.setMovesLeft(1);
+				return true;
+			}
+			
+		}
+		if(moveCount >= 2) { 
+			return false;
+		}
 		return true;	
+	}
+	
+	//TODO Fill out Java doc
+	//used for finding if the room is special and if so allowing the user to move through secret passages
+	//or allowing two users to be on the same spot
+	public boolean isSpecialRoom(int x, int y){
+		//do sanity checking?
+		if(x == 3 && y == 6){
+			return true;
+		}
+		if((x == 4 && y == 9) || (x == 6 && y == 11) || (x == 6 && y == 12)){
+			return true;
+		}
+		if((x == 5 && y == 17)){
+			return true;
+		}
+		if((x == 8 && y == 6) || (x == 10 && y == 3)){
+			return true;
+		}		
+		if((x == 9 && y == 17) || (x == 12 && y == 16)){
+			return true;
+		}
+		if((x == 12 && y == 1) || (x == 15 && y == 5)){
+			return true;
+		}
+		if((x == 19 && y == 4)){
+			return true;
+		}
+		if((x == 19 && y == 8) || (x == 19 && y == 15) || (x == 17 && y == 9) || (x == 17 && y == 14)){
+			return true;
+		}
+		if((x == 18 && y == 19)){
+			return true;
+		}
+		return false;
+	}
+	
+	public String getSpecialRoom(int x, int y){
+		//do sanity checking?
+		if(x == 3 && y == 6){
+			return "study";
+		}
+		if((x == 4 && y == 9) || (x == 6 && y == 11) || (x == 6 && y == 12)){
+			return "hall";
+		}
+		if((x == 5 && y == 17)){
+			return "lounge";
+		}
+		if((x == 8 && y == 6) || (x == 10 && y == 3)){
+			return "libary";
+		}		
+		if((x == 9 && y == 17) || (x == 12 && y == 16)){
+			return "dining room";
+		}
+		if((x == 12 && y == 1) || (x == 15 && y == 5)){
+			return "billard room";
+		}
+		if((x == 19 && y == 4)){
+			return "conservatory";
+		}
+		if((x == 19 && y == 8) || (x == 19 && y == 15) || (x == 17 && y == 9) || (x == 17 && y == 14)){
+			return "ball room";
+		}
+		if((x == 18 && y == 19)){
+			return "kitchen";
+		}
+		return null;
 	}
 }

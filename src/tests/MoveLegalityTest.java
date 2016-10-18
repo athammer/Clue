@@ -37,7 +37,7 @@ import code.player.Player;
 * done
 
 * Test that your project correctly identifies as illegal a move that goes through a wall.
-* done
+* done(other then need to fill out the rest of the nulls in the rooms and such.
  */
 
 public class MoveLegalityTest {
@@ -104,6 +104,23 @@ public class MoveLegalityTest {
 		boolean successOrFail = playerLogic.movePlayer(testBoard, testPlayer, 1, 0); //should return false as wall
 		boolean successOrFail1 = playerLogic.movePlayer(testBoard, testPlayer, 0, 1); //should return false as wall
 		assertFalse(successOrFail); //if both are false then move failed due to walls
+		assertFalse(successOrFail1);
+	}
+	@Test
+	public void roomTeleporting(){
+		Board testBoard = new Board();
+		String[][] board = testBoard.getBoard();
+		Player testPlayer = new Player();
+		PlayerLogic playerLogic = new PlayerLogic();
+		DiceRoll diceRoll = new DiceRoll();
+		int playerMoves = diceRoll.rollOneDice() + 1; //just incase player rolls a 1
+		//setting up player
+		testPlayer.setMovesLeft(playerMoves);
+		testPlayer.setXYCord(3, 6); //the special room "study"
+		boolean successOrFail = playerLogic.movePlayer(testBoard, testPlayer, 18, 19);
+		boolean successOrFail1 = playerLogic.movePlayer(testBoard, testPlayer, 19, 19); //should be false as moves should be run out
+		assertEquals(playerMoves, 0 /*moving to special room should reset moves */, 0.001);
+		assertTrue(successOrFail);
 		assertFalse(successOrFail1);
 	
 	}
