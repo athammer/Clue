@@ -97,7 +97,7 @@ public class Board {
 		board[12][1] = BR;
 		board[15][5] = BR;
 		
-		
+		//TODO finish up the rooms and add nulls to everwhere but the doors for the rooms
 		
 	}
 	

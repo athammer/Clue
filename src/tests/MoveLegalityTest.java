@@ -56,6 +56,7 @@ public class MoveLegalityTest {
 		Board testBoard = new Board();
 		Player testPlayer = new Player();
 		//TODO Check all rooms and some out of bound areas and see if they are null
+		//TODO finish the board so the rooms have nulls (other then door ofc)
 	}
 	@Test
 	public void playerRollAndMoveTest(){
