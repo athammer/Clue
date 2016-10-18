@@ -21,7 +21,7 @@ public class Board {
 		
 		
 		//Walls within the array
-		board[0][23] = null; //6
+		board[0][6] = null; //6
 		board[0][9] = null;
 		board[0][15] = null;
 		board[0][17] = null;
