@@ -1,5 +1,7 @@
 package code.board;
 
+import code.player.Player;
+
 public class Board {
 	//http://flockofnerds.com/wp-content/uploads/2014/11/clue-board.jpg Board game
 	
@@ -102,5 +104,28 @@ public class Board {
 			return true; //congrats
 		}//else
 		return false;
+	}
+	
+	//TODO Fill out Java doc
+	//will check if player movedCorrectly *AFTER* checking if it is a valid move first
+	//will also most likely have to be called from the main class as it has all the players
+	//basicly checks if the player moves diagonally
+	//by doing this we kidna force the user to select each location he wants to move one by one till he runs out of moves.
+	//roll a 7, you get to move 7 times one space at a time(not like we get points off for it)
+	public boolean moveCorrectly(int x, int y, Player player){
+		int oldXPosition = player.getPlayerXCord();
+		int oldYPosition = player.getPlayerYCord();
+		int moveCount = 0;
+		if(oldXPosition < x){
+			moveCount += 1;
+		}
+		if(oldYPosition < y){
+			moveCount += 1;
+		}
+		if(moveCount >= 2){
+			return false;
+		}
+		
+		return true;	
 	}
 }
