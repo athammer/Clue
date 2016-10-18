@@ -65,7 +65,7 @@ public class MoveLegalityTest {
 		String[][] board = testBoard.getBoard();
 		for (int j = 0; j < board[0].length; j++){ //done to remove 'walls(nulls)' for simplicity and sanity.
 			for (int i = 0; i < board.length; i++){
-				board[i][j] = "empty"; //pretty iffy 
+				board[i][j] = "empty"; //pretty iffy test
 			}
 		}
 		Player testPlayer = new Player();
