@@ -1,6 +1,10 @@
 package tests;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
+
+import code.player.Player;
 
 /*
 
@@ -24,7 +28,18 @@ import org.junit.Test;
 
 
 public class SuggestionProofTest {
+	
+	@Test
+	public void suggestionGuess(){
+		Player suggestPlayer = new Player();
+		Player answerPlayer = new Player(); 
+//		String[] sgPlayer = suggestPlayer.getPlayerCards();
+		String[] ansPlayer = answerPlayer.getPlayerCards(); 
+		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
+		assertTrue(suggestion);
+	}
+	
+//	@Test
+//	public void 
 
 }
-
-
