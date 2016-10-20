@@ -1,5 +1,7 @@
 package code;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -8,7 +10,7 @@ import code.player.Player;
 
 public class Main {
 	private HashSet<String> _currentPlayers = new HashSet<String>(); //array to see who is currently playing and hasn't lost
-	public static Player[] _playerArray; //forced to make this public so others can access easily
+	public static ArrayList<Player> _playerArray = new ArrayList<Player>(); //forced to make this public so others can access easily
 	
 	/**
 	 * Starts the game and creates the player and board instances for the game.
@@ -20,7 +22,6 @@ public class Main {
 		System.out.println("How many players are playing (no more then 6)? ");
 		Scanner scan = new Scanner(System.in); 
 		int players = scan.nextInt(); //gets quantity of players
-		_playerArray = new Player[players - 1]; //starts at 0
 		for(int i = 0; players -1 > i; i++){
 			System.out.println("Enter your player names on at a time."); //each name has to be unique
 			Scanner scan1 = new Scanner(System.in); 
@@ -28,10 +29,10 @@ public class Main {
 			_currentPlayers.add(playerName); //adding players to hashset
 			Player player = new Player();
 			player.setName(playerName);
-			_playerArray[i] = player;
+			_playerArray.add(player);
 			
 		}
-		shufflePlayers(); //for now this just shuffles players randomly without a dice roll
+		Collections.shuffle(_playerArray); //for now this just shuffles players randomly without a dice roll
 		//add a random number generator to see who goes first
 	}
 	
@@ -43,13 +44,13 @@ public class Main {
 			String playerName = _currentPlayers.iterator().next();
 			Player player = new Player(); 
 			player.setName(playerName);
-			_playerArray[i] = player;
+			_playerArray.add(player);
 			i++;
 		}
 	}
 	
 	//TODO Fill out Java doc
-	public Player[] getPlayers(){ //currently useless as the player class handles if the player lost
+	public ArrayList<Player> getPlayers(){ //currently useless as the player class handles if the player lost
 		return _playerArray;
 	}
 	
@@ -58,7 +59,9 @@ public class Main {
 		return _currentPlayers;
 	}
 	
-	
+	public void addPlayer(Player player){ //currently useless as the player class handles if the player lost
+		_playerArray.add(player);
+	}
 	
 	
 	
@@ -73,15 +76,4 @@ public class Main {
 		return _currentPlayers;
 	}
 	
-	private void shufflePlayers(){
-	    int index;
-	    Player temp;
-	    Random random = new Random();
-	    for (int i = _playerArray.length - 1; i > 0; i--){
-	        index = random.nextInt(i + 1);
-	        temp = _playerArray[index];
-	        _playerArray[index] = _playerArray[i];
-	        _playerArray[i] = temp;
-	    }
-	}
 }
