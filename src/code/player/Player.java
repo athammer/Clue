@@ -105,9 +105,9 @@ public class Player {
 		return true;
 	}
 	//TODO Fill out Java doc
-	public boolean checkCards(String[] cards){ 
+	public boolean checkCards(ArrayList<String> ansPlayer){ 
 		boolean cardFound = false;
-		for(String otherCard : cards){
+		for(String otherCard : ansPlayer){
 			for(String playerCard : _playerCards){
 				if(otherCard == playerCard){
 					cardFound = true;

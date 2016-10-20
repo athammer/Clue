@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import code.board.Board;
@@ -34,8 +36,8 @@ public class SuggestionProofTest {
 	public void suggestionPlayerGuess(){
 		Player suggestPlayer = new Player();
 		Player answerPlayer = new Player(); 
-		String[] sgPlayer = suggestPlayer.getPlayerCards();
-		String[] ansPlayer = answerPlayer.getPlayerCards(); 
+		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
+		ArrayList<String> ansPlayer = answerPlayer.getPlayerCards(); 
 		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
 		assertTrue(suggestion);
 	}
@@ -57,8 +59,8 @@ public class SuggestionProofTest {
 	public void twoMatchingCards(){
 		Player suggestPlayer = new Player();
 		Player answerPlayer = new Player(); 
-		String[] sgPlayer = suggestPlayer.getPlayerCards();
-		String[] ansPlayer = answerPlayer.getPlayerCards(); 
+		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
+		ArrayList<String> ansPlayer = answerPlayer.getPlayerCards(); 
 		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
 		int counter = 0; 
 		while(suggestPlayer.checkCards(ansPlayer)){
@@ -72,9 +74,11 @@ public class SuggestionProofTest {
 	@Test
 	public void matchingCardAnswer(){
 		Player suggestPlayer = new Player();
-		Player answerPlayer = new Player(); 
-		String[] sgPlayer = suggestPlayer.getPlayerCards();
-		String[] ansPlayer = answerPlayer.getPlayerCards();
+		Player seconPlayer = new Player(); 
+		Player thirdPlayer = new Player(); 
+		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
+		ArrayList<String> secPlayer = seconPlayer.getPlayerCards();
+		ArrayList<String> thiPlayer = thirdPlayer.getPlayerCards();
 	}
 
 	
