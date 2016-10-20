@@ -36,7 +36,7 @@ public class SuggestionProofTest {
 	public void suggestionPlayerGuess(){
 		Player suggestPlayer = new Player();
 		Player answerPlayer = new Player(); 
-		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
+//		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
 		ArrayList<String> ansPlayer = answerPlayer.getKnownCards(); 
 		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
 		assertTrue(suggestion);
@@ -46,7 +46,7 @@ public class SuggestionProofTest {
 	public void suggestionPlayerRoom(){
 		Player roomSuggestPlayer = new Player(); 
 		Player roomPlayer = new Player();
-		ArrayList<String> rsPlayer = roomSuggestPlayer.getPlayerCards();
+//		ArrayList<String> rsPlayer = roomSuggestPlayer.getPlayerCards();
 		ArrayList<String> rPlayer = roomPlayer.getKnownCards();
  		boolean roomSuggestion = roomSuggestPlayer.checkCards(rPlayer);
  		assertTrue(roomSuggestion);
@@ -56,7 +56,7 @@ public class SuggestionProofTest {
 	public void suggestionPlayerWeapon(){
 		Player weaponSuggestPlayer = new Player();
 		Player weaponPlayer = new Player();
-		ArrayList<String> wsPlayer = weaponSuggestPlayer.getPlayerCards();
+//		ArrayList<String> wsPlayer = weaponSuggestPlayer.getPlayerCards();
 		ArrayList<String> wPlayer = weaponPlayer.getKnownCards();
 		boolean weaponSuggestion = weaponSuggestPlayer.checkCards(wPlayer);
 		assertTrue(weaponSuggestion);
@@ -68,7 +68,7 @@ public class SuggestionProofTest {
 	public void twoMatchingCards(){
 		Player suggestPlayer = new Player();
 		Player answerPlayer = new Player(); 
-		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
+//		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
 		ArrayList<String> ansPlayer = answerPlayer.getKnownCards(); 
 		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
 		int counter = 0; 
@@ -85,8 +85,8 @@ public class SuggestionProofTest {
 		Player suggestPlayer = new Player();
 		Player seconPlayer = new Player(); 
 		Player thirdPlayer = new Player(); 
-		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-		ArrayList<String> secPlayer = seconPlayer.getPlayerCards();
+//		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
+//		ArrayList<String> secPlayer = seconPlayer.getPlayerCards();
 		ArrayList<String> thiPlayer = thirdPlayer.getKnownCards();
 		boolean suggestion = suggestPlayer.checkCards(thiPlayer);
 		assertTrue(suggestion);
@@ -133,8 +133,7 @@ public class SuggestionProofTest {
 		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
 		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
 		
-////		suggestPlayer.makeAccusation(string a, string b, string c){
-//			
+////		suggestPlayer.makeAccusation(string a, string b, string c){		
 //		}
 				
 	}
@@ -157,9 +156,7 @@ public class SuggestionProofTest {
 		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
 		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
 		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
-		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
-		
-//		
+		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 		
 		
 	}
 }
