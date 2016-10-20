@@ -8,6 +8,8 @@ import code.board.Board;
 import code.player.Player;
 
 /*
+ * 
+ * 
 
 * Suggestion would be answered by the next player because they have the Player card;
 
@@ -29,6 +31,48 @@ import code.player.Player;
 
 
 public class SuggestionProofTest {
+	
+	@Test
+	public void playerPlayerGuess(){
+		Player suggestionPlayer = new Player();
+		Player answerPlayer  = new Player();
+		suggestionPlayer.addPlayerCards(card) //room
+
+	}
+	
+	@Test
+	public void playerRoomGuess(){
+		Player suggestionPlayer = new Player();
+		Player answerPlayer  = new Player();
+		suggestionPlayer.addPlayerCards(card) //room
+
+	}
+	
+	@Test
+	public void playerWeaponGuess(){
+		Player suggestionPlayer = new Player();
+		Player answerPlayer  = new Player();
+		suggestionPlayer.addPlayerCards(card) //room
+
+	}
+	
+	@Test
+	public void playerGuessTwoCards(){
+		Player suggestionPlayer = new Player();
+		Player answerPlayer  = new Player();
+		suggestionPlayer.addPlayerCards(card) //room
+
+	}
+	
+	@Test
+	public void playerGuessTwoCards(){
+		Player suggestionPlayer = new Player();
+		Player answerPlayer  = new Player();
+		suggestionPlayer.addPlayerCards(card) //room
+
+	}
+	
+	
 	
 	@Test
 	public void suggestionPlayerGuess(){
