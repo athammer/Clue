@@ -1,8 +1,12 @@
 package code.player;
 
+import java.util.ArrayList;
+
 public class Player {
 	String _playerName; //player's name
-	String[] _playerCards; //player's cards
+	ArrayList<String> _playerCards = new ArrayList<String>(); //player's cards
+	ArrayList<String> _knownCards = new ArrayList<String>(); //all cards you know(not including your own cards
+	ArrayList<String> _totalCards = new ArrayList<String>(); //all cards you know and your own cards
 	int _playerXCords;
 	int _playerYCords;
 	int _startPosition; //who goes first
@@ -15,21 +19,17 @@ public class Player {
 
 	}
 	//TODO Fill out Java doc
-	public void setPlayer(String name, String[] playerCards, int x, int y, int startPosition){
-		_playerName = name;
-		_playerCards = playerCards;
-		_playerXCords = x;
-		_playerYCords = y;
-		_startPosition = startPosition;
-		
-	}
-	//TODO Fill out Java doc
 	public String getPlayerName(){
 		return _playerName;
 	}
 	//TODO Fill out Java doc
-	public String[] getPlayerCards(){
+	public ArrayList<String> getPlayerCards(){
 		return _playerCards;
+	}
+	//TODO Fill out Java doc
+	public boolean addPlayerCards(String card){
+		_playerCards.add(card);
+		return true;
 	}
 	//TODO Fill out Java doc
 	public int getPlayerXCord(){
@@ -46,6 +46,24 @@ public class Player {
 	//TODO Fill out Java doc
 	public int movesLeft(){
 		return _movesLeft;
+	}
+	//TODO Fill out Java doc
+	public ArrayList<String> getKnownCards(){
+		return _knownCards;
+	}
+	//TODO Fill out Java doc
+	public ArrayList<String> getAllCards(){
+		return _totalCards;
+	}
+	//TODO Fill out Java doc
+	public boolean addKnownCards(String card){
+		_knownCards.add(card);
+		return true;
+	}
+	//TODO Fill out Java doc
+	public boolean addAllCards(String card){
+		_totalCards.add(card);
+		return true;
 	}
 	
 	
