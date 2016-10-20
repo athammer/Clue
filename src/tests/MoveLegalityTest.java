@@ -51,7 +51,7 @@ public class MoveLegalityTest {
 		assertFalse(moveDiagTest);
 	}
 	
-	@Test
+	@Test //Test push
 	public void validLocation(){
 		Board testBoard = new Board();
 		Player testPlayer = new Player();

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import code.board.Board;
 import code.player.Player;
 
 /*
@@ -41,6 +42,9 @@ public class SuggestionProofTest {
 	
 	@Test
 	public void suggestionPlayerRoom(){
+		Player roomPlayer = new Player(); 
+		Board roomTestBoard = new Board();
+		
 		
 	}
 	
