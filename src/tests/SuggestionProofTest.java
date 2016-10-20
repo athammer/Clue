@@ -55,12 +55,26 @@ public class SuggestionProofTest {
 	
 	@Test
 	public void twoMatchingCards(){
-		
+		Player suggestPlayer = new Player();
+		Player answerPlayer = new Player(); 
+		String[] sgPlayer = suggestPlayer.getPlayerCards();
+		String[] ansPlayer = answerPlayer.getPlayerCards(); 
+		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
+		int counter = 0; 
+		while(suggestPlayer.checkCards(ansPlayer)){
+			if(suggestion == true){
+				counter++;
+			}
+		}
+		assertEquals(2,counter);
 	}
 	
 	@Test
 	public void matchingCardAnswer(){
-		
+		Player suggestPlayer = new Player();
+		Player answerPlayer = new Player(); 
+		String[] sgPlayer = suggestPlayer.getPlayerCards();
+		String[] ansPlayer = answerPlayer.getPlayerCards();
 	}
 
 	
