@@ -37,7 +37,6 @@ import code.player.Player;
 public class SuggestionProofTest {
 	
 	@Test
-<<<<<<< HEAD
 	public void playerPlayerGuess(){
 		Player suggestionPlayer = new Player();
 		Player answerPlayer  = new Player();
@@ -99,68 +98,8 @@ public class SuggestionProofTest {
 		answerPlayer.addPlayerCards("Rope");
 		ArrayList<String> cards = answerPlayer.returnCommonCards(suggestionPlayer.getPlayerCards());
 		assertEquals(cards.get(0), "Prof. Plum");
-=======
-	public void suggestionPlayerGuess(){
-		Player suggestPlayer = new Player();
-		Player answerPlayer = new Player(); 
-		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-		ArrayList<String> ansPlayer = answerPlayer.getKnownCards(); 
-		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
-		assertTrue(suggestion);
 	}
 	
-	@Test
-	public void suggestionPlayerRoom(){
-		Player roomSuggestPlayer = new Player(); 
-		Player roomPlayer = new Player();
-		ArrayList<String> rsPlayer = roomSuggestPlayer.getPlayerCards();
-		ArrayList<String> rPlayer = roomPlayer.getKnownCards();
- 		boolean roomSuggestion = roomSuggestPlayer.checkCards(rPlayer);
- 		assertTrue(roomSuggestion);
-	}
-	
-	@Test 
-	public void suggestionPlayerWeapon(){
-		Player weaponSuggestPlayer = new Player();
-		Player weaponPlayer = new Player();
-		ArrayList<String> wsPlayer = weaponSuggestPlayer.getPlayerCards();
-		ArrayList<String> wPlayer = weaponPlayer.getKnownCards();
-		boolean weaponSuggestion = weaponSuggestPlayer.checkCards(wPlayer);
-		assertTrue(weaponSuggestion);
-		
- 		
-	}
-	
-	@Test
-	public void twoMatchingCards(){
-		Player suggestPlayer = new Player();
-		Player answerPlayer = new Player(); 
-		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-		ArrayList<String> ansPlayer = answerPlayer.getKnownCards(); 
-		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
-		int counter = 0; 
-		while(suggestPlayer.checkCards(ansPlayer)){
-			if(suggestion == true){
-				counter++;
-			}
-		}
-		assertEquals(2,counter);
-	}
-	
-	@Test
-	public void matchingCardAnswer(){
-		Player suggestPlayer = new Player();
-		Player seconPlayer = new Player(); 
-		Player thirdPlayer = new Player(); 
-		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-		ArrayList<String> secPlayer = seconPlayer.getPlayerCards();
-		ArrayList<String> thiPlayer = thirdPlayer.getKnownCards();
-		boolean suggestion = suggestPlayer.checkCards(thiPlayer);
-		assertTrue(suggestion);
->>>>>>> eb57fabdbc5b1f1bcc0dfc69f4237715abfbd286
-	}
-	
-<<<<<<< HEAD
 	@Test
 	public void noCardsFound(){ //
 		Player suggestionPlayer = new Player();
@@ -178,76 +117,5 @@ public class SuggestionProofTest {
 	
 	
 
-=======
-	@Test //Garrett
-	//* Suggestion would be answered by the player immediately before player making suggestion because they have 1 or more matching cards;
-	public void answerBeforeMove(){
-		//iterate through the group of players, first, forward down the array of players to the end,
-		//then from the beginning of the array to the suggesting player's location
-		
-		Player suggestPlayer = new Player();
-		Player secondPlayer = new Player();
-		Player thirdPlayer = new Player();
-		Player fourthPlayer = new Player();
-		Player fifthPlayer = new Player();
-		Player sixthPlayer = new Player();
-		
-		ArrayList<String> suggPlayer  = suggestPlayer.getPlayerCards();
-		ArrayList<String> twoPlayer = secondPlayer.getPlayerCards(); 
-		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
-		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
-		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
-		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
-
-	}
-	
-	@Test  //Garrett
-	//* Suggestion cannot be answered by any player but the player making the suggestion has 1 or more matching cards;
-	public void unansweredButMatching(){
-		//No matches are found in other hands, but player has 1 or more cards;
-		Player suggestPlayer = new Player();
-		Player secondPlayer = new Player();
-		Player thirdPlayer = new Player();
-		Player fourthPlayer = new Player();
-		Player fifthPlayer = new Player();
-		Player sixthPlayer = new Player();
-		
-		ArrayList<String> suggPlayer  = suggestPlayer.getPlayerCards();
-		ArrayList<String> twoPlayer = secondPlayer.getPlayerCards(); 
-		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
-		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
-		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
-		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
-		
-////		suggestPlayer.makeAccusation(string a, string b, string c){
-//			
-//		}
-				
-	}
-	
-	@Test  //Garrett
-	//* Suggestion cannot be answered by any player and the player making the suggestion does not have any matching cards.
-	public void unansweredAndNoMatching(){
-		//Suggestion cannot be matched by any other player
-		//AND suggesting player has none of the suggested cards.
-		
-		Player suggestPlayer = new Player();
-		Player secondPlayer = new Player();
-		Player thirdPlayer = new Player();
-		Player fourthPlayer = new Player();
-		Player fifthPlayer = new Player();
-		Player sixthPlayer = new Player();
-		
-		ArrayList<String> suggPlayer  = suggestPlayer.getPlayerCards();
-		ArrayList<String> twoPlayer = secondPlayer.getPlayerCards(); 
-		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
-		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
-		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
-		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
-		
-//		
-		
-	}
->>>>>>> eb57fabdbc5b1f1bcc0dfc69f4237715abfbd286
 }
 
