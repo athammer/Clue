@@ -1,6 +1,7 @@
 package code;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Scanner;
 
 import code.player.Player;
@@ -20,12 +21,17 @@ public class Main {
 		Scanner scan = new Scanner(System.in); 
 		int players = scan.nextInt(); //gets quantity of players
 		_playerArray = new Player[players - 1]; //starts at 0
-		for(int i = 0; players > i; i++){
+		for(int i = 0; players -1 > i; i++){
 			System.out.println("Enter your player names on at a time."); //each name has to be unique
 			Scanner scan1 = new Scanner(System.in); 
 			String playerName = scan1.nextLine();
 			_currentPlayers.add(playerName); //adding players to hashset
+			Player player = new Player();
+			player.setName(playerName);
+			_playerArray[i] = player;
+			
 		}
+		shufflePlayers(); //for now this just shuffles players randomly without a dice roll
 		//add a random number generator to see who goes first
 	}
 	
@@ -47,6 +53,11 @@ public class Main {
 		return _playerArray;
 	}
 	
+	//TODO Fill out Java doc
+	public HashSet<String> getCurrentPlayers(){ //currently useless as the player class handles if the player lost
+		return _currentPlayers;
+	}
+	
 	
 	
 	
@@ -60,5 +71,17 @@ public class Main {
 	public HashSet<String> currentPlayers(){ //currently useless as the player class handles if the player lost
 		
 		return _currentPlayers;
+	}
+	
+	private void shufflePlayers(){
+	    int index;
+	    Player temp;
+	    Random random = new Random();
+	    for (int i = _playerArray.length - 1; i > 0; i--){
+	        index = random.nextInt(i + 1);
+	        temp = _playerArray[index];
+	        _playerArray[index] = _playerArray[i];
+	        _playerArray[i] = temp;
+	    }
 	}
 }
