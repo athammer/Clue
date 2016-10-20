@@ -87,7 +87,7 @@ public class Player {
 		return true;
 	}
 	//TODO Fill out Java doc
-	public boolean checkCards(String[] cards){
+	public boolean checkCards(String[] cards){ 
 		boolean cardFound = false;
 		for(String otherCard : cards){
 			for(String playerCard : _playerCards){
@@ -99,6 +99,31 @@ public class Player {
 			}
 		}
 		return cardFound;
+	}
+	
+	/**
+	 * Checks the player's cards against the cards in the parameter. 
+	 * <p>
+	 * If two identical cards are found adds them to an array.
+	 * 
+	 * @return      Cards that the player and the array have in common, if none returns null.
+	 */	
+	public String[] returnCommonCards(String[] cards){ 
+		int i = 0;
+		String[] cardsFound = new String[cards.length + 1 /*for good measure*/];
+		for(String otherCard : cards){
+			for(String playerCard : _playerCards){
+				if(otherCard == playerCard){
+					//give the player the card so he knows that he was wrong(?)
+					cardsFound[i] = playerCard;
+					i++;
+				}
+			}
+		}
+		if(i == 0){
+			return null;
+		}
+		return cardsFound;
 	}
 	
 	//TODO Fill out Java doc
