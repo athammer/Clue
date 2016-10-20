@@ -91,15 +91,13 @@ public class SuggestionProofTest {
 		assertFalse(suggestion4);
 		assertFalse(suggestion5);
 		assertTrue(suggestion6);
-		
-		
-		
-		
+
 	}
 	
 	@Test  //Garrett
 	//* Suggestion cannot be answered by any player but the player making the suggestion has 1 or more matching cards;
 	public void unansweredButMatching(){
+		//No matches are found in other hands, but player has 1 or more cards;
 		Player suggestPlayer = new Player();
 		Player secondPlayer = new Player();
 		Player thirdPlayer = new Player();
@@ -133,7 +131,8 @@ public class SuggestionProofTest {
 	@Test  //Garrett
 	//* Suggestion cannot be answered by any player and the player making the suggestion does not have any matching cards.
 	public void unansweredAndNoMatching(){
-		
+		//Suggestion cannot be matched by any other player
+		//AND suggesting player has none of the suggested cards.
 		Player suggestPlayer = new Player();
 		Player secondPlayer = new Player();
 		Player thirdPlayer = new Player();
@@ -162,9 +161,6 @@ public class SuggestionProofTest {
 		assertFalse(suggestion6);
 		assertFalse(doIHaveIt);
 		
-	//check each player array
-	//assertfalse that each respective player has no match
-	//the suggesting player has none of the suggestion cards either
 	}
 }
 
