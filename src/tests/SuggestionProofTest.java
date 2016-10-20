@@ -106,12 +106,12 @@ public class SuggestionProofTest {
 		Player fifthPlayer = new Player();
 		Player sixthPlayer = new Player();
 		
-		String[] suggPlayer  = suggestPlayer.getPlayerCards();
-		String[] twoPlayer = secondPlayer.getPlayerCards(); 
-		String[] threePlayer = thirdPlayer.getPlayerCards();
-		String[] fourPlayer  = fourthPlayer.getPlayerCards(); 
-		String[] fivePlayer  = fifthPlayer.getPlayerCards();
-		String[] sixPlayer = sixthPlayer.getPlayerCards(); 
+		ArrayList<String> suggPlayer  = suggestPlayer.getPlayerCards();
+		ArrayList<String> twoPlayer = secondPlayer.getPlayerCards(); 
+		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
+		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
+		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
+		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
 
 	}
 	
@@ -126,16 +126,16 @@ public class SuggestionProofTest {
 		Player fifthPlayer = new Player();
 		Player sixthPlayer = new Player();
 		
-		String[] suggPlayer  = suggestPlayer.getPlayerCards();
-		String[] twoPlayer = secondPlayer.getPlayerCards(); 
-		String[] threePlayer = thirdPlayer.getPlayerCards();
-		String[] fourPlayer  = fourthPlayer.getPlayerCards(); 
-		String[] fivePlayer  = fifthPlayer.getPlayerCards();
-		String[] sixPlayer = sixthPlayer.getPlayerCards(); 
+		ArrayList<String> suggPlayer  = suggestPlayer.getPlayerCards();
+		ArrayList<String> twoPlayer = secondPlayer.getPlayerCards(); 
+		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
+		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
+		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
+		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
 		
-		suggestPlayer.makeAccusation(string a, string b, string c){
-			
-		}
+////		suggestPlayer.makeAccusation(string a, string b, string c){
+//			
+//		}
 				
 	}
 	
@@ -152,12 +152,12 @@ public class SuggestionProofTest {
 		Player fifthPlayer = new Player();
 		Player sixthPlayer = new Player();
 		
-		String[] suggPlayer  = suggestPlayer.getPlayerCards();
-		String[] twoPlayer = secondPlayer.getPlayerCards(); 
-		String[] threePlayer = thirdPlayer.getPlayerCards();
-		String[] fourPlayer  = fourthPlayer.getPlayerCards(); 
-		String[] fivePlayer  = fifthPlayer.getPlayerCards();
-		String[] sixPlayer = sixthPlayer.getPlayerCards(); 
+		ArrayList<String> suggPlayer  = suggestPlayer.getPlayerCards();
+		ArrayList<String> twoPlayer = secondPlayer.getPlayerCards(); 
+		ArrayList<String> threePlayer = thirdPlayer.getPlayerCards();
+		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
+		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
+		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 
 		
 //		
 		
