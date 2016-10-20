@@ -101,18 +101,6 @@ public class SuggestionProofTest {
 		String[] fourPlayer  = fourthPlayer.getPlayerCards(); 
 		String[] fivePlayer  = fifthPlayer.getPlayerCards();
 		String[] sixPlayer = sixthPlayer.getPlayerCards(); 
-		
-		boolean suggestion2 = suggestPlayer.checkCards(twoPlayer);
-		boolean suggestion3 = suggestPlayer.checkCards(threePlayer);
-		boolean suggestion4 = suggestPlayer.checkCards(fourPlayer);
-		boolean suggestion5 = suggestPlayer.checkCards(fivePlayer);
-		boolean suggestion6 = suggestPlayer.checkCards(sixPlayer);
-				
-		assertFalse(suggestion2);
-		assertFalse(suggestion3);
-		assertFalse(suggestion4);
-		assertFalse(suggestion5);
-		assertTrue(suggestion6);
 
 	}
 	
@@ -134,19 +122,9 @@ public class SuggestionProofTest {
 		String[] fivePlayer  = fifthPlayer.getPlayerCards();
 		String[] sixPlayer = sixthPlayer.getPlayerCards(); 
 		
-		boolean suggestion2 = suggestPlayer.checkCards(twoPlayer);
-		boolean suggestion3 = suggestPlayer.checkCards(threePlayer);
-		boolean suggestion4 = suggestPlayer.checkCards(fourPlayer);
-		boolean suggestion5 = suggestPlayer.checkCards(fivePlayer);
-		boolean suggestion6 = suggestPlayer.checkCards(sixPlayer);
-		boolean doIHaveIt = suggestPlayer.checkCards(suggPlayer);
-		
-		assertFalse(suggestion2);
-		assertFalse(suggestion3);
-		assertFalse(suggestion4);
-		assertFalse(suggestion5);
-		assertFalse(suggestion6);
-		assertTrue(doIHaveIt);
+		suggestPlayer.makeAccusation(string a, string b, string c){
+			
+		}
 				
 	}
 	
@@ -155,6 +133,7 @@ public class SuggestionProofTest {
 	public void unansweredAndNoMatching(){
 		//Suggestion cannot be matched by any other player
 		//AND suggesting player has none of the suggested cards.
+		
 		Player suggestPlayer = new Player();
 		Player secondPlayer = new Player();
 		Player thirdPlayer = new Player();
@@ -169,19 +148,7 @@ public class SuggestionProofTest {
 		String[] fivePlayer  = fifthPlayer.getPlayerCards();
 		String[] sixPlayer = sixthPlayer.getPlayerCards(); 
 		
-		boolean suggestion2 = suggestPlayer.checkCards(twoPlayer);
-		boolean suggestion3 = suggestPlayer.checkCards(threePlayer);
-		boolean suggestion4 = suggestPlayer.checkCards(fourPlayer);
-		boolean suggestion5 = suggestPlayer.checkCards(fivePlayer);
-		boolean suggestion6 = suggestPlayer.checkCards(sixPlayer);
-		boolean doIHaveIt = suggestPlayer.checkCards(suggPlayer);
-		
-		assertFalse(suggestion2);
-		assertFalse(suggestion3);
-		assertFalse(suggestion4);
-		assertFalse(suggestion5);
-		assertFalse(suggestion6);
-		assertFalse(doIHaveIt);
+//		
 		
 	}
 }
