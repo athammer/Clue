@@ -8,7 +8,6 @@ import code.player.Player;
 public class CardLogic {
 
 	public String whatCardType(String card){
-		
 		if ((card == "Prof. Plum") || (card == "Colonel Mustard") || (card == "Mr. Green") || (card == "Mrs. Peacock") 
 				|| (card == "Ms. Scarlet") || (card == "Mrs. White"))
 			{ return "Suspect"; }
@@ -22,7 +21,7 @@ public class CardLogic {
 			{ return "Location"; }
 		
 		return "Mismatch Error: card does not correspond to cards in deck.";
-	}
+		}
 	
 	public ArrayList<String> findAllPlayersCards(ArrayList<String> cards, Player guessingPlayer /*player that is asking */){
 		ArrayList<String> cardsFound = new ArrayList<String>();
@@ -43,9 +42,7 @@ public class CardLogic {
 			
 		}
 		return cardsFound;
-	}
-			
-		
+	}	
 }
 	
 	

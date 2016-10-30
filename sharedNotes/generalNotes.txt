@@ -1,0 +1,3 @@
+	//a Card class isn't really needed
+	//make sure you use camel case for variables and methods
+	//http://www.oracle.com/technetwork/java/codeconventions-135099.html
