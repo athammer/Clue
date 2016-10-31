@@ -18,22 +18,19 @@ public class Main {
 	 * The main function of the game it controls most of the core logic in the game.
 	 */
 	@SuppressWarnings("resource")
-	public Main(){
+	public static void main(String[] args){
 		System.out.println("How many players are playing (no more then 6)? ");
 		Scanner scan = new Scanner(System.in); 
 		int players = scan.nextInt(); //gets quantity of players
-		for(int i = 0; players -1 > i; i++){
-			System.out.println("Enter your player names on at a time."); //each name has to be unique
-			Scanner scan1 = new Scanner(System.in); 
-			String playerName = scan1.nextLine();
-			_currentPlayers.add(playerName); //adding players to hashset
-			Player player = new Player();
-			player.setName(playerName);
-			_playerArray.add(player);
-			
-		}
-		Collections.shuffle(_playerArray); //for now this just shuffles players randomly without a dice roll
-		//add a random number generator to see who goes first
+		ArrayList<String> characters = new ArrayList<String>();
+		characters.add("Prof. Plum");
+		characters.add();
+		characters.add();
+		characters.add();
+		characters.add();
+		characters.add();
+		characters.add();
+
 	}
 	
 	
@@ -75,5 +72,14 @@ public class Main {
 		
 		return _currentPlayers;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

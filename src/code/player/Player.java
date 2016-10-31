@@ -3,7 +3,7 @@ package code.player;
 import java.util.ArrayList;
 
 public class Player {
-	String _playerName; //player's name
+	String _playerName; //player's character name ie Plum, or whatever
 	ArrayList<String> _playerCards = new ArrayList<String>(); //player's cards
 	ArrayList<String> _knownCards = new ArrayList<String>(); //all cards you know(not including your own cards
 	ArrayList<String> _totalCards = new ArrayList<String>(); //all cards you know and your own cards
@@ -104,7 +104,11 @@ public class Player {
 		_playerYCords = y;
 		return true;
 	}
-	//TODO Fill out Java doc
+	
+	/**
+	 * Gets the remaining moves left for a user.
+	 * @return Returns and int value of how many moves left.
+	 */	
 	public boolean checkCards(ArrayList<String> cards){ 
 		boolean cardFound = false;
 		for(String otherCard : cards){
@@ -119,13 +123,7 @@ public class Player {
 		return cardFound;
 	}
 	
-	/**
-	 * Checks the player's cards against the cards in the parameter. 
-	 * <p>
-	 * If two identical cards are found adds them to an ArrayList.
-	 * 
-	 * @return      Returns an ArrayList with the common card(s)
-	 */	
+	//TODO Fill out Java doc
 	public ArrayList<String> returnCommonCards(ArrayList<String> cards){ 
 		int i = 0;
 		ArrayList<String> cardsFound = new ArrayList<String>();
@@ -144,7 +142,10 @@ public class Player {
 		return cardsFound;
 	}
 	
-	//TODO Fill out Java doc
+	/**
+	 * Checks the player has moves left. 
+	 * @return Returns true or false depending if the player has moves left.
+	 */	
 	public boolean hasMovesLeft(){
 		if(_movesLeft > 0){
 			return true;
@@ -153,6 +154,10 @@ public class Player {
 
 	}
 	
+	/**
+	 * Gets the remaining moves left for a user.
+	 * @return Returns and int value of how many moves left.
+	 */	
 	public int getMovesLeft(){
 		return _movesLeft;
 

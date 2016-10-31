@@ -7,6 +7,12 @@ import code.player.Player;
 
 public class CardLogic {
 
+	
+	/**
+	 * Used for getting the type of the card(person, place, weapon).
+	 * @param  card The card in question you want to determine its' type.
+	 * @return      Suspect, Weapon, Location, or null if none of the above.
+	 */
 	public String whatCardType(String card){
 		if ((card == "Prof. Plum") || (card == "Colonel Mustard") || (card == "Mr. Green") || (card == "Mrs. Peacock") 
 				|| (card == "Ms. Scarlet") || (card == "Mrs. White"))
@@ -20,9 +26,16 @@ public class CardLogic {
 				(card == "Study") || (card == "Hall") || (card == "Lounge") || (card == "Dining Room") || (card == "Kitchen"))
 			{ return "Location"; }
 		
-		return "Mismatch Error: card does not correspond to cards in deck.";
-		}
+		return null; //can return null on a string
+	}
 	
+	
+	/**
+	 * Checks all players, other then the guesser, to see if someone has a card.
+	 * @param  cards ArrayList of type string of the cards the player is guessing.
+	 * @param  guessingPlayer The player that is guessing.
+	 * @return An ArrayList of type string with the cards found, even if none where found.
+	 */
 	public ArrayList<String> findAllPlayersCards(ArrayList<String> cards, Player guessingPlayer /*player that is asking */){
 		ArrayList<String> cardsFound = new ArrayList<String>();
 		for(int i = 0; Main._playerArray.size() -1 > i; i++){
