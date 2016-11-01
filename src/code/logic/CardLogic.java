@@ -39,7 +39,7 @@ public class CardLogic {
 	public ArrayList<String> findAllPlayersCards(ArrayList<String> cards, Player guessingPlayer /*player that is asking */){
 		ArrayList<String> cardsFound = new ArrayList<String>();
 		for(int i = 0; Main._playerArray.size() -1 > i; i++){
-			if(guessingPlayer.getPlayerName().equals(Main._playerArray.get(i).getPlayerName())){
+			if(guessingPlayer.getCharacterName().equals(Main._playerArray.get(i).getCharacterName())){
 				//do nothing
 			}else{
 				for(String checkCard : cards){
