@@ -6,6 +6,7 @@ public class DiceRoll {
 	
 	//TODO Fill out Java doc
 	public int rollOneDice(){
+		////minimum + rn.nextInt(maxValue - minvalue + 1)
 		Random rand = new Random();
 		int randomNum = rand.nextInt((6 - 1) + 1) + 1;
 		return randomNum; //TODO should do a check to see if this is really 1-6
@@ -13,6 +14,7 @@ public class DiceRoll {
 	
 	//TODO Fill out Java doc
 	public int[] rollTwoDice(){
+		////minimum + rn.nextInt(maxValue - minvalue + 1)
 		Random rand = new Random();
 		int[] dicerolls = new int[1];
 		int randomNum = rand.nextInt((6 - 1) + 1) + 1;

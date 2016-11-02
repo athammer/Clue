@@ -7,7 +7,7 @@ public class Board {
 	//https://s-media-cache-ak0.pinimg.com/originals/8d/4a/95/8d4a95cfddea78bcee58a7eb243ceb93.jpg
 	
 	//TODO Fill out Java doc
-	String[][] board = new String[25][24]; //Height: 25, Width: 24, 600 possible tiles. Top left is [0][0]
+	private String[][] board = new String[25][24]; //Height: 25, Width: 24, 600 possible tiles. Top left is [0][0]
 	//The movement will have to check if the player goes out of bounds of the array and handle the error by not letting him move there.
 	//TODO Fill out Java doc
 	public Board(){

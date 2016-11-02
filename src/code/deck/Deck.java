@@ -83,9 +83,10 @@ public class Deck {
 	public void createCrime(){
 		Random rand = new Random();
 		while(true){
-			String murderer = _deck.get(rand.nextInt(5 - 0) + 0); //random 0-5
-			String weapon = _deck.get(rand.nextInt(11 - 6) + 6); 
-			String place = _deck.get(rand.nextInt(20 - 12) + 12); 
+			//minimum + rn.nextInt(maxValue - minvalue + 1)
+			String murderer = _deck.get(rand.nextInt(5 - 0) + 1) + 0; //random 0-5
+			String weapon = _deck.get(rand.nextInt(11 - 6) + 1) + 6; 
+			String place = _deck.get(rand.nextInt(20 - 12) + 1) + 12; 
 			_crimeCards.add(murderer);
 			_crimeCards.add(weapon);
 			_crimeCards.add(place);

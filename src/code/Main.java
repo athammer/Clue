@@ -6,8 +6,10 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
+import code.board.Board;
 import code.deck.Deck;
 import code.logic.PlayerLogic;
+import code.logic.TurnLogic;
 import code.player.Player;
 
 public class Main {
@@ -19,7 +21,6 @@ public class Main {
 	/**
 	 * ArrayList with only active playing players.
 	 */
-	
 	public static ArrayList<Player> _activePlayers = new ArrayList<Player>(); //spooky global variable with accessor method anyways
 	
 	public static String _currentPlayerTurn; //more global variables :) last one tho
@@ -41,21 +42,29 @@ public class Main {
 		characters.add("Mrs. White");
 		characters.add("Mrs. Peacock");
 		characters.add("Colonel Mustard");
+		Board board = new Board();
 		for(int i = 0; i<playerCount; i++){
 			Player player = new Player();
 			player.setCharacterName(characters.get(i));
 			PlayerLogic plogic = new PlayerLogic();
 			int[] positon = plogic.findStartingPosition(characters.get(i)); //finds players start position based on name
-			player.setXYCord(positon[0], positon[1]); //puts players in that position
-			
-			
-			
+			player.setXYCord(positon[0], positon[1]); //puts players in that position locally
+			board.setBoard(characters.get(i), positon[0], positon[1]); //puts players in that for all players to see
 			_activePlayers.add(player);
 			_playerArray.add(player);
 		}
 		Deck deck = new Deck();
 		deck.giveCards(); //gives players cards
-		_currentPlayerTurn = "Ms. Scarlet";
+		_currentPlayerTurn = "Ms. Scarlet"; //who starts
+		while(_activePlayers.size() != 1){
+			PlayerLogic pLogic = new PlayerLogic();
+			TurnLogic tL = new TurnLogic();
+			Player player = pLogic.findPlayer(_currentPlayerTurn);
+			tL.completeTurn(player, board);
+			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
+		}
+		
+		//if we get here the game is done
 	}
 	
 	/**
