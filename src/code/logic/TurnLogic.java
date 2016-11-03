@@ -25,8 +25,10 @@ public class TurnLogic {
 		int playerMoves = player.getMovesLeft();
 		for(int i = 0; i < playerMoves; i++){
 			playerLogic.movePlayer(board, player, 1, 1); //get user input from gui or something
+			//popup if user wants to end his move stage of turn
 		}
 		//player is out of moves left
+		//put in a pop up asking if player wants to final guess or normal guess
 		//let player guess here
 		if(board.isSpecialRoom(player.getMovesLeft(), player.getPlayerYCord())){
 			GuessLogic guessLogic = new GuessLogic();
