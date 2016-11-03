@@ -1,5 +1,7 @@
 package code;
 
+import gui.GUI;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -56,6 +58,9 @@ public class Main {
 		Deck deck = new Deck();
 		deck.giveCards(); //gives players cards
 		_currentPlayerTurn = "Ms. Scarlet"; //who starts
+		
+		//load the gui here after everyone loads
+		GUI gui = new GUI();
 		while(_activePlayers.size() != 1){
 			PlayerLogic pLogic = new PlayerLogic();
 			TurnLogic tL = new TurnLogic();

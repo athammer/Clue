@@ -6,6 +6,10 @@ public class Board {
 	//http://flockofnerds.com/wp-content/uploads/2014/11/clue-board.jpg Board game
 	//https://s-media-cache-ak0.pinimg.com/originals/8d/4a/95/8d4a95cfddea78bcee58a7eb243ceb93.jpg
 	
+	
+	//for gui if players are in the same room assign their image,color, name to predefined spots in the room that were prev null
+	//then when they move out it is back to null
+	
 	//TODO Fill out Java doc
 	private String[][] board = new String[25][24]; //Height: 25, Width: 24, 600 possible tiles. Top left is [0][0]
 	//The movement will have to check if the player goes out of bounds of the array and handle the error by not letting him move there.
