@@ -64,7 +64,7 @@ public class Main {
 			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
 		}
 		
-		//if we get here the game is done
+		//if we get here the game /should/ be done
 	}
 	
 	/**
