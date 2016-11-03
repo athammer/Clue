@@ -1,0 +1,24 @@
+Meeting Minutes for September 15 2016:
+
+Attendance:
+	Aaron Hammer: M U
+	Garret Walborn: U
+Stories completed:
+	None.
+	
+Stories worked on:
+	findPlayerAndCard
+	moveOrder
+	legalMoveCheckOnInput
+	playerGuessOnTurnEnd
+	playerTurnAndMoves
+	
+Goals for next meeting:
+	Work on GUI
+	Finish idea storming for how GUI is implemented
+	Clean up code and make sure jUnit tests are doable
+	Work on specific user stories.
+	
+Scheduled future meeting:
+	Lab meeting on Tuesday at 12PM
+	Weekly meeting on Thursday at 5:00PM
