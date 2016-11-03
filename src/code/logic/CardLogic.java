@@ -1,5 +1,10 @@
 package code.logic;
 
+import java.util.ArrayList;
+
+import code.Main;
+import code.player.Player;
+
 public class CardLogic {
 
 	public String whatCardType(String card){
@@ -17,6 +22,27 @@ public class CardLogic {
 			{ return "Location"; }
 		
 		return "Mismatch Error: card does not correspond to cards in deck.";
+	}
+	
+	public ArrayList<String> findAllPlayersCards(ArrayList<String> cards, Player guessingPlayer /*player that is asking */){
+		ArrayList<String> cardsFound = new ArrayList<String>();
+		for(int i = 0; Main._playerArray.size() -1 > i; i++){
+			if(guessingPlayer.getPlayerName().equals(Main._playerArray.get(i).getPlayerName())){
+				//do nothing
+			}else{
+				for(String checkCard : cards){
+					for(String playerCard : Main._playerArray.get(i).getPlayerCards()){
+						if(checkCard.equals(playerCard)){
+							cardsFound.add(checkCard);
+							
+						}
+					}
+					
+				}
+			}
+			
+		}
+		return cardsFound;
 	}
 			
 		

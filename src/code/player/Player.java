@@ -105,9 +105,9 @@ public class Player {
 		return true;
 	}
 	//TODO Fill out Java doc
-	public boolean checkCards(ArrayList<String> ansPlayer){ 
+	public boolean checkCards(ArrayList<String> cards){ 
 		boolean cardFound = false;
-		for(String otherCard : ansPlayer){
+		for(String otherCard : cards){
 			for(String playerCard : _playerCards){
 				if(otherCard == playerCard){
 					cardFound = true;
@@ -122,18 +122,18 @@ public class Player {
 	/**
 	 * Checks the player's cards against the cards in the parameter. 
 	 * <p>
-	 * If two identical cards are found adds them to an array.
+	 * If two identical cards are found adds them to an ArrayList.
 	 * 
-	 * @return      Cards that the player and the array have in common, if none returns null.
+	 * @return      Returns an ArrayList with the common card(s)
 	 */	
-	public String[] returnCommonCards(String[] cards){ 
+	public ArrayList<String> returnCommonCards(ArrayList<String> cards){ 
 		int i = 0;
-		String[] cardsFound = new String[cards.length + 1 /*for good measure*/];
+		ArrayList<String> cardsFound = new ArrayList<String>();
 		for(String otherCard : cards){
 			for(String playerCard : _playerCards){
 				if(otherCard == playerCard){
 					//give the player the card so he knows that he was wrong(?)
-					cardsFound[i] = playerCard;
+					cardsFound.add(otherCard);
 					i++;
 				}
 			}
