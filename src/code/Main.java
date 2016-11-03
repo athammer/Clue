@@ -6,74 +6,86 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
+import code.board.Board;
+import code.deck.Deck;
+import code.logic.PlayerLogic;
+import code.logic.TurnLogic;
 import code.player.Player;
 
 public class Main {
-	private HashSet<String> _currentPlayers = new HashSet<String>(); //array to see who is currently playing and hasn't lost
-	public static ArrayList<Player> _playerArray = new ArrayList<Player>(); //forced to make this public so others can access easily
+	//if static has some special convention im ignoring it
+	/**
+	 * ArrayList that has all of the players, lost or not.
+	 */
+	public static ArrayList<Player> _playerArray = new ArrayList<Player>(); //spooky global variable with accessor method anyways
+	/**
+	 * ArrayList with only active playing players.
+	 */
+	public static ArrayList<Player> _activePlayers = new ArrayList<Player>(); //spooky global variable with accessor method anyways
 	
+	public static String _currentPlayerTurn; //more global variables :) last one tho
 	/**
 	 * Starts the game and creates the player and board instances for the game.
 	 * <p>
 	 * The main function of the game it controls most of the core logic in the game.
+	 * @throws Exception 
 	 */
 	@SuppressWarnings("resource")
-	public Main(){
+	public static void main(String[] args) throws Exception{
 		System.out.println("How many players are playing (no more then 6)? ");
 		Scanner scan = new Scanner(System.in); 
-		int players = scan.nextInt(); //gets quantity of players
-		for(int i = 0; players -1 > i; i++){
-			System.out.println("Enter your player names on at a time."); //each name has to be unique
-			Scanner scan1 = new Scanner(System.in); 
-			String playerName = scan1.nextLine();
-			_currentPlayers.add(playerName); //adding players to hashset
+		int playerCount = scan.nextInt(); //gets quantity of players
+		ArrayList<String> characters = new ArrayList<String>();
+		characters.add("Ms. Scarlet");
+		characters.add("Prof. Plum");
+		characters.add("Mr. Green");
+		characters.add("Mrs. White");
+		characters.add("Mrs. Peacock");
+		characters.add("Colonel Mustard");
+		Board board = new Board();
+		for(int i = 0; i<playerCount; i++){
 			Player player = new Player();
-			player.setName(playerName);
+			player.setCharacterName(characters.get(i));
+			PlayerLogic plogic = new PlayerLogic();
+			int[] positon = plogic.findStartingPosition(characters.get(i)); //finds players start position based on name
+			player.setXYCord(positon[0], positon[1]); //puts players in that position locally
+			board.setBoard(characters.get(i), positon[0], positon[1]); //puts players in that for all players to see
+			_activePlayers.add(player);
 			_playerArray.add(player);
-			
 		}
-		Collections.shuffle(_playerArray); //for now this just shuffles players randomly without a dice roll
-		//add a random number generator to see who goes first
+		Deck deck = new Deck();
+		deck.giveCards(); //gives players cards
+		_currentPlayerTurn = "Ms. Scarlet"; //who starts
+		while(_activePlayers.size() != 1){
+			PlayerLogic pLogic = new PlayerLogic();
+			TurnLogic tL = new TurnLogic();
+			Player player = pLogic.findPlayer(_currentPlayerTurn);
+			tL.completeTurn(player, board);
+			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
+		}
+		
+		//if we get here the game is done
 	}
 	
-	
-	
-	public void createPlayers(){ //currently useless as the player class handles if the player lost
-		int i = 0;
-		while(_currentPlayers.iterator().hasNext()){
-			String playerName = _currentPlayers.iterator().next();
-			Player player = new Player(); 
-			player.setName(playerName);
-			_playerArray.add(player);
-			i++;
-		}
-	}
-	
-	//TODO Fill out Java doc
+	/**
+	 * @return Returns all of the players in an ArrayList of type Player.
+	 */
 	public ArrayList<Player> getPlayers(){ //currently useless as the player class handles if the player lost
 		return _playerArray;
 	}
 	
-	//TODO Fill out Java doc
-	public HashSet<String> getCurrentPlayers(){ //currently useless as the player class handles if the player lost
-		return _currentPlayers;
-	}
-	
-	public void addPlayer(Player player){ //currently useless as the player class handles if the player lost
-		_playerArray.add(player);
-	}
-	
-	
-	
 	/**
-	 * Returns the current players in the game, can be used to tell who has lost the game.
-	 * <p>
-	 *
-	 * @return      the current players in the game in HashSet form.
+	 * @return Returns all of the active players in an ArrayList of type Player.
 	 */
-	public HashSet<String> currentPlayers(){ //currently useless as the player class handles if the player lost
-		
-		return _currentPlayers;
+	public ArrayList<Player> getActivePlayers(){ //currently useless as the player class handles if the player lost
+		return _activePlayers;
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

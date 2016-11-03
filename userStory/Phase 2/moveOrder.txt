@@ -1,0 +1,2 @@
+As a player, I want turns to follow the order that Miss Scarlet goes first (this is from the rules), 
+then Professor Plum, Mr. Green, Mrs. White, Mrs. Peacock, and, finally, Col. Mustard so we can have a simple ordering.

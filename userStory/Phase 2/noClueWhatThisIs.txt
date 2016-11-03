@@ -1,0 +1,2 @@
+As a player, I want to be able to see which cards the player whose turn it is has in 
+their hand so they can decide where to go.

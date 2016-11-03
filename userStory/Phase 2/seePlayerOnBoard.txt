@@ -1,0 +1,2 @@
+As a player, I want to be able to see the board and where each player is on the board
+so we can see where each player's piece is.
