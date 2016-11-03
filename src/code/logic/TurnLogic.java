@@ -17,6 +17,7 @@ public class TurnLogic {
 		String roomName = board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord()); 
 		if(roomName.equals("kitchen") || roomName.equals("study") || roomName.equals("conservatory") || roomName.equals("lounge")){
 			//lets users have a special part of their turn where they can pick to go through a special tunnel here
+			//should be a pop up
 		}
 		
 		//get user input of where they want to go
@@ -30,7 +31,7 @@ public class TurnLogic {
 		if(board.isSpecialRoom(player.getMovesLeft(), player.getPlayerYCord())){
 			GuessLogic guessLogic = new GuessLogic();
 			ArrayList<String> cards = null; //get information from gui
-			
+			//should be a pop up
 			//figure out which one player wants to do on gui
 			guessLogic.makeAGuess(cards, player, roomName);
 			guessLogic.makeAFinalGuess(cards, player, roomName, board);
