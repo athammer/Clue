@@ -1,6 +1,6 @@
 package code;
 
-import gui.GUI;
+import code.gui.GUI;
 
 import java.util.ArrayList;
 import java.util.Collections;
