@@ -60,12 +60,12 @@ public class Main {
 		_currentPlayerTurn = "Ms. Scarlet"; //who starts
 		
 		//load the gui here after everyone loads
-		GUI gui = new GUI();
+		GUI gui = new GUI(board.getBoard());
 		while(_activePlayers.size() != 1){
 			PlayerLogic pLogic = new PlayerLogic();
 			TurnLogic tL = new TurnLogic();
-			Player player = pLogic.findPlayer(_currentPlayerTurn);
-			tL.completeTurn(player, board);
+			Player currentPlayer = pLogic.findPlayer(_currentPlayerTurn);
+			tL.completeTurn(currentPlayer, board);
 			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
 		}
 		
