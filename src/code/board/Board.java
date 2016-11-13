@@ -18,7 +18,7 @@ public class Board {
 		for (int j = 0; j < board[0].length; j++){
 			for (int i = 0; i < board.length; i++){
 				board[i][j] = "empty"; //pretty iffy
-				System.out.println(i + ' ' + j);
+				//System.out.println(i + ' ' + j);
 		    	 
 			}
 		}
