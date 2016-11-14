@@ -37,7 +37,7 @@ import code.player.Player;
 public class SuggestionProofTest {
 	
 	@Test
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	public void suggestionPlayerGuess(){
 		Player suggestPlayer = new Player();
 		Player answerPlayer = new Player(); 
@@ -95,7 +95,8 @@ public class SuggestionProofTest {
 		ArrayList<String> thiPlayer = thirdPlayer.getKnownCards();
 		boolean suggestion = suggestPlayer.checkCards(thiPlayer);
 		assertTrue(suggestion);
-=======
+	}
+//=======
 	public void playerPlayerGuess(){
 		Player suggestionPlayer = new Player();
 		Player answerPlayer  = new Player();
@@ -157,8 +158,9 @@ public class SuggestionProofTest {
 		answerPlayer.addPlayerCards("Rope");
 		ArrayList<String> cards = answerPlayer.returnCommonCards(suggestionPlayer.getPlayerCards());
 		assertEquals(cards.get(0), "Prof. Plum");
->>>>>>> cc2a376bb383641f596127c5ea1b0788ed836206
 	}
+//>>>>>>> cc2a376bb383641f596127c5ea1b0788ed836206
+//	}
 	
 	@Test
 	public void noCardsFound(){ //
@@ -175,7 +177,7 @@ public class SuggestionProofTest {
 		assertNull(cards);
 	}
 	
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	@Test  //Garrett
 	//* Suggestion cannot be answered by any player but the player making the suggestion has 1 or more matching cards;
 	public void unansweredButMatching(){
@@ -204,7 +206,6 @@ public class SuggestionProofTest {
 	public void unansweredAndNoMatching(){
 		//Suggestion cannot be matched by any other player
 		//AND suggesting player has none of the suggested cards.
-		
 		Player suggestPlayer = new Player();
 		Player secondPlayer = new Player();
 		Player thirdPlayer = new Player();
@@ -218,11 +219,11 @@ public class SuggestionProofTest {
 		ArrayList<String> fourPlayer  = fourthPlayer.getPlayerCards(); 
 		ArrayList<String> fivePlayer  = fifthPlayer.getPlayerCards();
 		ArrayList<String> sixPlayer = sixthPlayer.getPlayerCards(); 		
-		
 	}
-=======
-	
-
->>>>>>> cc2a376bb383641f596127c5ea1b0788ed836206
+//=======
+//	
+//
+//>>>>>>> cc2a376bb383641f596127c5ea1b0788ed836206
 }
+
 
