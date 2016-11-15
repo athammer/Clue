@@ -36,66 +36,6 @@ import code.player.Player;
 
 public class SuggestionProofTest {
 	
-	@Test
-//<<<<<<< HEAD
-	public void suggestionPlayerGuess(){
-		Player suggestPlayer = new Player();
-		Player answerPlayer = new Player(); 
-//		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-		ArrayList<String> ansPlayer = answerPlayer.getKnownCards(); 
-		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
-		assertTrue(suggestion);
-	}
-	
-	@Test
-	public void suggestionPlayerRoom(){
-		Player roomSuggestPlayer = new Player(); 
-		Player roomPlayer = new Player();
-//		ArrayList<String> rsPlayer = roomSuggestPlayer.getPlayerCards();
-		ArrayList<String> rPlayer = roomPlayer.getKnownCards();
- 		boolean roomSuggestion = roomSuggestPlayer.checkCards(rPlayer);
- 		assertTrue(roomSuggestion);
-	}
-	
-	@Test 
-	public void suggestionPlayerWeapon(){
-		Player weaponSuggestPlayer = new Player();
-		Player weaponPlayer = new Player();
-//		ArrayList<String> wsPlayer = weaponSuggestPlayer.getPlayerCards();
-		ArrayList<String> wPlayer = weaponPlayer.getKnownCards();
-		boolean weaponSuggestion = weaponSuggestPlayer.checkCards(wPlayer);
-		assertTrue(weaponSuggestion);
-		
- 		
-	}
-	
-	@Test
-	public void twoMatchingCards(){
-		Player suggestPlayer = new Player();
-		Player answerPlayer = new Player(); 
-//		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-		ArrayList<String> ansPlayer = answerPlayer.getKnownCards(); 
-		boolean suggestion = suggestPlayer.checkCards(ansPlayer);
-		int counter = 0; 
-		while(suggestPlayer.checkCards(ansPlayer)){
-			if(suggestion == true){
-				counter++;
-			}
-		}
-		assertEquals(2,counter);
-	}
-	
-	@Test
-	public void matchingCardAnswer(){
-		Player suggestPlayer = new Player();
-		Player seconPlayer = new Player(); 
-		Player thirdPlayer = new Player(); 
-//		ArrayList<String> sgPlayer = suggestPlayer.getPlayerCards();
-//		ArrayList<String> secPlayer = seconPlayer.getPlayerCards();
-		ArrayList<String> thiPlayer = thirdPlayer.getKnownCards();
-		boolean suggestion = suggestPlayer.checkCards(thiPlayer);
-		assertTrue(suggestion);
-	}
 //=======
 	public void playerPlayerGuess(){
 		Player suggestionPlayer = new Player();
