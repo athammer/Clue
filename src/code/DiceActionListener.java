@@ -2,13 +2,14 @@ package code;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import code.logic.DiceRoll;
 
 public class DiceActionListener implements ActionListener {
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+		DiceRoll rand = new DiceRoll();
+		rand.rollOneDice();
+		}
+	
 
 }
