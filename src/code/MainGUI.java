@@ -33,9 +33,21 @@ public class MainGUI {
 	JPanel cards = new JPanel(); 
 	JPanel cardKnown = new JPanel();
 	JPanel Dice = new JPanel(); 
+	ArrayList<Player> _characters = new ArrayList<Player>();
+	ArrayList<String> _knowncards = new ArrayList<String>();
+	ArrayList<String> _allcards = new ArrayList<String>();
 	
 	MainGUI(){
 		initializeClueGui();
+	}
+	public void getcharaters(){
+		
+	}
+	public void getknowncards(Player x){
+		_knowncards = x.getKnownCards();
+	}
+	public void getallcards(Player x){
+		_allcards = x.getAllCards();
 	}
 	
 	public void initializeClueGui() {

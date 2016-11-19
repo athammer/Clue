@@ -52,7 +52,7 @@ public class Deck {
 		_deck.add("Lounge");
 		_deck.add("Dining Room");
 		_deck.add("Kitchen");
-		_deckCopy = (ArrayList<String>) _deck.clone(); //should work but doubt we'll test it
+		_deckCopy = (ArrayList<String>) _deck.clone(); //should work but doubt we'll test it	
 	}
 	
 	
