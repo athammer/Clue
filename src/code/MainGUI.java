@@ -33,8 +33,7 @@ public class MainGUI {
 	public static void main(String[] args) throws Exception{
 		Board board = new Board();
 		GUI gui = new GUI(board.getBoard());
-//		gui.popUpExampleString();
-//		gui.popUpExampleBoolean();
+
 		
 	}
 

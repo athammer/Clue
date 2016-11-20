@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 import code.DiceActionListener;
 import code.DiceActionListener2;
+import code.board.Board;
 import code.player.Player;
 import code.gui.actionListener.onClickActionListener;
 import javax.swing.border.LineBorder;
@@ -32,14 +33,39 @@ public class GUI implements ActionListener {
 		gameFrame.setVisible(true);
 		gameFrame.getContentPane().setBackground(Color.DARK_GRAY);
 
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(10, 81, 776, 776);
 		gameFrame.getContentPane().add(panel);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		panel.setLayout(new GridLayout(25, 24, 0, 0));
+		for(int x = 0; x < board.length; x++){
+			for(int y = 0; y < board[x].length; y++){
+			    JButton btn = new JButton();
+			    btn.setSize(25,25);
+			    if(board[x][y] == null){
+			    	btn.setBackground(Color.BLACK);
+				    btn.setForeground(Color.BLACK);
+			    }
+			    if(board[x][y] == "empty"){
+			    	btn.setBackground(Color.WHITE);
+				    btn.setForeground(Color.WHITE);
+			    }
+			    if(board[x][y] == "emptyRoom"){
+			    	btn.setBackground(Color.DARK_GRAY);
+				    btn.setForeground(Color.DARK_GRAY);
+			    }
+			    Board boardLogic = new Board();
+			    if(boardLogic.isSpecialRoom(x, y)){
+			    	btn.setBackground(Color.PINK);
+				    btn.setForeground(Color.PINK);
+			    }
+			    panel.add(btn);
+			}
+		}
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(801, 81, 592, 455);
+		panel_1.setBounds(796, 81, 597, 455);
 		gameFrame.getContentPane().add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
