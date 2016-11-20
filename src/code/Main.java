@@ -15,6 +15,10 @@ import code.logic.TurnLogic;
 import code.player.Player;
 
 public class Main {
+	
+	
+	public static Board board;
+	
 	//if static has some special convention im ignoring it
 	/**
 	 * ArrayList that has all of the players, lost or not.
@@ -36,7 +40,17 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 		System.out.println("How many players are playing (no more then 6)? ");
 		Scanner scan = new Scanner(System.in); 
-		int playerCount = scan.nextInt(); //gets quantity of players
+		int playerCount = scan.nextInt();
+		while(true){
+			if(playerCount > 1){
+				if(playerCount < 7){
+					break;
+				}
+			}
+			System.out.println("How many players are playing (no more then 6)? ");
+			scan = new Scanner(System.in);
+			playerCount = scan.nextInt();
+		}
 		ArrayList<String> characters = new ArrayList<String>();
 		characters.add("Ms. Scarlet");
 		characters.add("Prof. Plum");
@@ -44,28 +58,31 @@ public class Main {
 		characters.add("Mrs. White");
 		characters.add("Mrs. Peacock");
 		characters.add("Colonel Mustard");
-		Board board = new Board();
+		board = new Board();
 		for(int i = 0; i<playerCount; i++){
 			Player player = new Player();
 			player.setCharacterName(characters.get(i));
-			PlayerLogic plogic = new PlayerLogic();
-			int[] positon = plogic.findStartingPosition(characters.get(i)); //finds players start position based on name
-			player.setXYCord(positon[0], positon[1]); //puts players in that position locally
-			board.setBoard(characters.get(i), positon[0], positon[1]); //puts players in that for all players to see
 			_activePlayers.add(player);
 			_playerArray.add(player);
 		}
+		for(int i = 0; i<_playerArray.size(); i++){
+			PlayerLogic plogic = new PlayerLogic();
+			int[] positon = plogic.findStartingPosition(_playerArray.get(i).getCharacterName()); //finds players start position based on name
+			_playerArray.get(i).setXYCord(positon[0], positon[1]); //puts players in that position locally
+			board.setBoard(_playerArray.get(i).getCharacterName(), positon[0], positon[1]); //puts players in that for all players to see
+		}
 		Deck deck = new Deck();
+		deck.createCrime();
 		deck.giveCards(); //gives players cards
 		_currentPlayerTurn = "Ms. Scarlet"; //who starts
-		
 		//load the gui here after everyone loads
-		GUI gui = new GUI(board.getBoard());
+		GUI gui = new GUI(board);
+		PlayerLogic pLogic = new PlayerLogic();
+		TurnLogic tL = new TurnLogic();
 		while(_activePlayers.size() != 1){
-			PlayerLogic pLogic = new PlayerLogic();
-			TurnLogic tL = new TurnLogic();
 			Player currentPlayer = pLogic.findPlayer(_currentPlayerTurn);
-			tL.completeTurn(currentPlayer, board);
+			gui.getPlayerName().setText(currentPlayer.getCharacterName());
+			tL.completeTurn(currentPlayer, board, gui);
 			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
 		}
 		
@@ -87,6 +104,12 @@ public class Main {
 	}
 	
 	
+	/**
+	 * @return Returns the current players turn.
+	 */
+	public String getPlayerTurn(){ 
+		return _currentPlayerTurn;
+	}
 	
 	
 	

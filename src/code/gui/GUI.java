@@ -12,9 +12,12 @@ import javax.swing.border.EmptyBorder;
 
 import code.DiceActionListener;
 import code.DiceActionListener2;
+import code.Main;
 import code.board.Board;
 import code.player.Player;
 import code.gui.actionListener.onClickActionListener;
+import code.logic.PlayerLogic;
+
 import javax.swing.border.LineBorder;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -24,9 +27,14 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class GUI implements ActionListener {
-
-	public GUI(String[][] board) {
-		JFrame gameFrame = new JFrame("Clue - Aaron H, Zee, Adam S, Garret");
+	JFrame gameFrame = new JFrame("Clue - Aaron H, Zee, Adam S, Garret");
+	JLabel numberMovesLeft = new JLabel("6");
+	JLabel playerName = new JLabel("player here");
+	JLabel consoleLabel = new JLabel("test");
+	JButton[][] jButtonArray = new JButton[25][24];
+	
+	public GUI(final Board boardObj) {
+		String[][] board = boardObj.getBoard();
 		gameFrame.setForeground(Color.GREEN);
 		gameFrame.setSize(1422, 907);
 		gameFrame.getContentPane().setLayout(null);
@@ -34,173 +42,277 @@ public class GUI implements ActionListener {
 		gameFrame.getContentPane().setBackground(Color.DARK_GRAY);
 
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(10, 81, 776, 776);
-		gameFrame.getContentPane().add(panel);
-		panel.setLayout(new GridLayout(25, 24, 0, 0));
+		JPanel boardPanel = new JPanel();
+		boardPanel.setBackground(Color.LIGHT_GRAY);
+		boardPanel.setBounds(10, 81, 776, 776);
+		gameFrame.getContentPane().add(boardPanel);
+		boardPanel.setLayout(new GridLayout(25, 24, 0, 0));
 		for(int x = 0; x < board.length; x++){
 			for(int y = 0; y < board[x].length; y++){
 			    JButton btn = new JButton();
 			    btn.setSize(25,25);
+			    btn.setActionCommand(x + "      " + y + "    ");
+			    btn.addActionListener(this);
 			    if(board[x][y] == null){
+			    	btn.setBorderPainted(false);
+			    	btn.setEnabled(false);
 			    	btn.setBackground(Color.BLACK);
 				    btn.setForeground(Color.BLACK);
 			    }
 			    if(board[x][y] == "empty"){
-			    	btn.setBackground(Color.WHITE);
-				    btn.setForeground(Color.WHITE);
+			    	btn.setBackground(Color.lightGray);
+				    btn.setForeground(Color.lightGray);
+				    //btn.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 			    }
 			    if(board[x][y] == "emptyRoom"){
 			    	btn.setBackground(Color.DARK_GRAY);
 				    btn.setForeground(Color.DARK_GRAY);
 			    }
+			    if(board[x][y] == "stair case"){
+			    	btn.setBorderPainted(false);
+			    	btn.setEnabled(false);
+			    	btn.setBackground(Color.BLACK);
+				    btn.setForeground(Color.BLACK);
+			    }
 			    Board boardLogic = new Board();
 			    if(boardLogic.isSpecialRoom(x, y)){
-			    	btn.setBackground(Color.PINK);
-				    btn.setForeground(Color.PINK);
+			    	btn.setBackground(Color.pink);
+				    btn.setForeground(Color.pink);
 			    }
-			    panel.add(btn);
+			    if(board[x][y] == "secret passage"){
+			    	//when clicked should open a message askign if you want to move to the other corner room
+			    	btn.setBackground(Color.gray);
+				    btn.setForeground(Color.gray);
+				    btn.addActionListener(new ActionListener() { 
+				    	public void actionPerformed(ActionEvent e) { 
+				    		PlayerLogic pL = new PlayerLogic();
+				    		pL.useSecretPassage(pL.findPlayer(Main._currentPlayerTurn), boardObj);
+				    	} 
+				    });
+				    
+			    }
+			    if(board[x][y] == "room"){
+			    	//when clicked should open a message askign if you want to move to the other corner room
+			    	btn.setBackground(Color.CYAN);
+				    btn.setForeground(Color.CYAN);
+				    btn.setBorderPainted(false);
+			    	btn.setEnabled(false);
+			    }
+				if(board[x][y] == ("Ms. Scarlet")){
+					btn.setBackground(new Color(255, 36, 0));
+				    btn.setForeground(new Color(255, 36, 0));
+				}
+				if(board[x][y] == ("Prof. Plum")){
+					btn.setBackground(new Color(221,160,221));
+				    btn.setForeground(new Color(221,160,221));
+				}
+				if(board[x][y] == ("Mr. Green")){
+					btn.setBackground(Color.green);
+				    btn.setForeground(Color.green);
+				}
+				if(board[x][y] == ("Mrs. White")){
+					btn.setBackground(Color.white);
+				    btn.setForeground(Color.white);
+				}
+				if(board[x][y] == ("Mrs. Peacock")){
+					btn.setBackground(new Color(9, 84, 190));
+				    btn.setForeground(new Color(9, 84, 190));
+				}
+				if(board[x][y] == ("Colonel Mustard")){
+					btn.setBackground(new Color(227, 190, 66));
+				    btn.setForeground(new Color(227, 190, 66));
+				}
+			    jButtonArray[x][y] = btn;
+			    boardPanel.add(btn);
 			}
 		}
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(796, 81, 597, 455);
-		gameFrame.getContentPane().add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBounds(796, 81, 597, 455);
+		gameFrame.getContentPane().add(buttonPanel);
+		buttonPanel.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnGet = new JButton("Get Player Cards");
-		btnGet.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		panel_1.add(btnGet, BorderLayout.CENTER);
+		JButton playerCards = new JButton("Get Player Cards");
+		playerCards.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		buttonPanel.add(playerCards, BorderLayout.CENTER);
 		
-		JButton btnGet_1 = new JButton("Get \r\nKnown \r\nCards");
-		btnGet_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		panel_1.add(btnGet_1, BorderLayout.WEST);
+		JButton knownCards = new JButton("Get \r\nKnown \r\nCards");
+		knownCards.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		buttonPanel.add(knownCards, BorderLayout.WEST);
 		
-		JButton btnNewButton = new JButton("Get All Cards");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		panel_1.add(btnNewButton, BorderLayout.EAST);
+		JButton allCards = new JButton("Get All Cards");
+		allCards.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		buttonPanel.add(allCards, BorderLayout.EAST);
 		
-		JButton btnGuessCards = new JButton("Guess Cards");
-		btnGuessCards.setFont(new Font("Tahoma", Font.PLAIN, 45));
-		panel_1.add(btnGuessCards, BorderLayout.NORTH);
+		JButton guessCards = new JButton("Guess Cards");
+		guessCards.setFont(new Font("Tahoma", Font.PLAIN, 45));
+		buttonPanel.add(guessCards, BorderLayout.NORTH);
 		
-		JButton btnFinalGuess = new JButton("Final Guess");
-		btnFinalGuess.setFont(new Font("Tahoma", Font.PLAIN, 45));
-		panel_1.add(btnFinalGuess, BorderLayout.SOUTH);
+		JButton finalGuess = new JButton("Final Guess");
+		finalGuess.setFont(new Font("Tahoma", Font.PLAIN, 45));
+		buttonPanel.add(finalGuess, BorderLayout.SOUTH);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.BLACK);
-		panel_2.setBounds(12, 9, 1381, 63);
-		gameFrame.getContentPane().add(panel_2);
+		JPanel console = new JPanel();
+		console.setBackground(Color.BLACK);
+		console.setBounds(12, 9, 1381, 61);
+		gameFrame.getContentPane().add(console);
 
-		JLabel lblNewLabel = new JLabel(
-				"New label test tNew label test tNew label test tNew label test tNew label test tNew label test t");
-		lblNewLabel.setForeground(Color.GREEN);
-		lblNewLabel.setFont(new Font("Comic Sans MS" /* enjoy */, Font.PLAIN, 22));
-		panel_2.add(lblNewLabel);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(1157, 547, 239, 148);
-		gameFrame.getContentPane().add(panel_3);
+		consoleLabel.setForeground(Color.GREEN);
+		consoleLabel.setFont(new Font("Comic Sans MS" /* enjoy */, Font.PLAIN, 22));
 		
-		JLabel lblMovesLeft = new JLabel("Moves Left");
-		lblMovesLeft.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMovesLeft.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		
-		JLabel lblNewLabel_2 = new JLabel("6");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setForeground(Color.RED);
-		lblNewLabel_2.setFont(new Font("Sitka Banner", Font.PLAIN, 99));
-		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
-		gl_panel_3.setHorizontalGroup(
-			gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblMovesLeft, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
-					.addContainerGap())
+		JButton helpButton = new JButton("Press for Help");
+		helpButton.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		GroupLayout gl_console = new GroupLayout(console);
+		gl_console.setHorizontalGroup(
+			gl_console.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_console.createSequentialGroup()
+					.addGap(476)
+					.addComponent(consoleLabel)
+					.addPreferredGap(ComponentPlacement.RELATED, 636, Short.MAX_VALUE)
+					.addComponent(helpButton, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
 		);
-		gl_panel_3.setVerticalGroup(
-			gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_3.createSequentialGroup()
+		gl_console.setVerticalGroup(
+			gl_console.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_console.createSequentialGroup()
 					.addGap(5)
-					.addComponent(lblMovesLeft)
-					.addGap(18)
-					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 87, Short.MAX_VALUE)
-					.addContainerGap())
+					.addComponent(consoleLabel)
+					.addContainerGap(24, Short.MAX_VALUE))
+				.addComponent(helpButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
 		);
-		panel_3.setLayout(gl_panel_3);
+		console.setLayout(gl_console);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(796, 706, 597, 151);
-		gameFrame.getContentPane().add(panel_4);
+		JPanel moves = new JPanel();
+		moves.setBounds(1157, 547, 239, 148);
+		gameFrame.getContentPane().add(moves);
 		
-		JLabel lblPlayersTurn = new JLabel("Players Turn");
-		lblPlayersTurn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayersTurn.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		JLabel movesLeftLabel = new JLabel("Moves Left");
+		movesLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		movesLeftLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
-		JLabel lblNewLabel_1 = new JLabel("player here");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblNewLabel_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblPlayersTurn, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
+		
+		numberMovesLeft.setHorizontalAlignment(SwingConstants.CENTER);
+		numberMovesLeft.setForeground(Color.RED);
+		numberMovesLeft.setFont(new Font("Sitka Banner", Font.PLAIN, 99));
+		GroupLayout gl_moves = new GroupLayout(moves);
+		gl_moves.setHorizontalGroup(
+			gl_moves.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_moves.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblPlayersTurn)
+					.addGroup(gl_moves.createParallelGroup(Alignment.LEADING)
+						.addComponent(movesLeftLabel, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+						.addComponent(numberMovesLeft, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_moves.setVerticalGroup(
+			gl_moves.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_moves.createSequentialGroup()
+					.addGap(5)
+					.addComponent(movesLeftLabel)
+					.addGap(18)
+					.addComponent(numberMovesLeft, GroupLayout.PREFERRED_SIZE, 87, Short.MAX_VALUE)
+					.addGap(29))
+		);
+		moves.setLayout(gl_moves);
+		
+		JPanel currentTurn = new JPanel();
+		currentTurn.setBounds(796, 706, 597, 151);
+		gameFrame.getContentPane().add(currentTurn);
+		
+		JLabel PlayerTurnLabel = new JLabel("Current Players Turn");
+		PlayerTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		PlayerTurnLabel.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		
+		
+		playerName.setHorizontalAlignment(SwingConstants.CENTER);
+		playerName.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		GroupLayout gl_currentTurn = new GroupLayout(currentTurn);
+		gl_currentTurn.setHorizontalGroup(
+			gl_currentTurn.createParallelGroup(Alignment.LEADING)
+				.addComponent(playerName, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+				.addGroup(gl_currentTurn.createSequentialGroup()
+					.addGap(10)
+					.addComponent(PlayerTurnLabel, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_currentTurn.setVerticalGroup(
+			gl_currentTurn.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_currentTurn.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(PlayerTurnLabel)
 					.addGap(11)
-					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(playerName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(43))
 		);
-		panel_4.setLayout(gl_panel_4);
+		currentTurn.setLayout(gl_currentTurn);
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(796, 547, 351, 148);
-		gameFrame.getContentPane().add(panel_5);
+		JPanel endResign = new JPanel();
+		endResign.setBounds(796, 547, 351, 148);
+		gameFrame.getContentPane().add(endResign);
 		
-		JButton btnEndTurn = new JButton("End Turn");
-		btnEndTurn.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		JButton endTurnButton = new JButton("End Turn");
+		endTurnButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		
-		JButton btnResign = new JButton("Resign");
-		btnResign.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
-		gl_panel_5.setHorizontalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
+		JButton resignButton = new JButton("Resign");
+		resignButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		GroupLayout gl_endResign = new GroupLayout(endResign);
+		gl_endResign.setHorizontalGroup(
+			gl_endResign.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_endResign.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnEndTurn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-						.addComponent(btnResign, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
+					.addGroup(gl_endResign.createParallelGroup(Alignment.LEADING)
+						.addComponent(endTurnButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+						.addComponent(resignButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
 					.addContainerGap())
 		);
-		gl_panel_5.setVerticalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_5.createSequentialGroup()
+		gl_endResign.setVerticalGroup(
+			gl_endResign.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_endResign.createSequentialGroup()
 					.addGap(5)
-					.addComponent(btnEndTurn, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+					.addComponent(endTurnButton, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnResign, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addComponent(resignButton, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
-		panel_5.setLayout(gl_panel_5);
+		endResign.setLayout(gl_endResign);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+//	JFrame gameFrame = new JFrame("Clue - Aaron H, Zee, Adam S, Garret");
+//	JLabel numberMovesLeft = new JLabel("6");
+//	JLabel playerName = new JLabel("player here");
+//	JLabel consoleLabel = new JLabel("test");
+//	JButton[][] jButtonArray = new JButton[25][24];
+	
+	public JFrame getGameFrame() {
+		return gameFrame;
+	}
+	public JLabel getNumberMovesLeft() {
+		return numberMovesLeft;
+	}
+	public JLabel getPlayerName() {
+		return playerName;
+	}
+	public JLabel getConsoleLabel() {
+		return consoleLabel;
+	}
+	public JButton[][] getJButtonArray() {
+		return jButtonArray;
+	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		String actionCommand = arg0.getActionCommand();
+		String x = actionCommand.substring(0, 3);
+		x = x.trim();
+		String y = actionCommand.substring(3);
+		y = y.trim();
+		int xInt = Integer.parseInt(x);
+		int yInt = Integer.parseInt(y);
+		PlayerLogic pL = new PlayerLogic();
+		pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt);
 	}
-
-
+	
+	
 }

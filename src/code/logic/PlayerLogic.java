@@ -27,6 +27,22 @@ public class PlayerLogic {
 	
 	//TODO Fill out Java doc
 	public boolean movePlayer(Board board, Player player, int x, int y){ //moves player to x and y
+		
+		//when players are in a room let users leave out another door
+		
+		//let plays switch doors without using a turn
+		//make player's new location the color they are and remove the color on the old spot
+		
+		if((board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord()) && board.isSpecialRoom(x, y)) && 
+				board.getSpecialRoom(x, y) == board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+			//is user moving to a room and is it the same one
+			//allows users to switch between doors
+			player.setXYCord(x, y);
+			return true;
+		}
+		
+		
+		
 		if(board.isValidLocation(x, y) && board.moveCorrectly(x, y, player) && player.hasMovesLeft()){ 
 			if(board.isSpecialRoom(x, y)){//player moved to a special room
 				//checks if user moved diag and if user is in a non null spot.
@@ -106,7 +122,64 @@ public class PlayerLogic {
 	 * @return Returns 	an int array with index 0 being x, and index 1 being y
 	 */
 	public int[] findStartingPosition(String name){
+		Player player = findPlayer(name);
+		int[] playerLocation = new int[2];
+		if(name.equals("Ms. Scarlet")){
+			playerLocation[0] = 0; //y
+			playerLocation[1] = 16; //x
+			return playerLocation;
+		}
+		if(name.equals("Prof. Plum")){
+			playerLocation[0] = 5; //y
+			playerLocation[1] = 0; //x
+			return playerLocation;
+		}
+		if(name.equals("Mr. Green")){
+			playerLocation[0] = 24; //y
+			playerLocation[1] = 9; //x
+			return playerLocation;
+		}
+		if(name.equals("Mrs. White")){
+			playerLocation[0] = 24; //y
+			playerLocation[1] = 14; //x
+			return playerLocation;
+		}
+		if(name.equals("Mrs. Peacock")){
+			playerLocation[0] = 18; //y
+			playerLocation[1] = 0; //x
+			return playerLocation;
+		}
+		if(name.equals("Colonel Mustard")){
+			playerLocation[0] = 7; //y
+			playerLocation[1] = 23; //x
+			return playerLocation;
+		}
 		return null;
+	}
+	
+	
+	
+	/**
+	 * Follows Clue's ordering but skips people who lost or not in the game.
+	 * @param  currentPlayerTurn A string that is the is the name of the character whos turn it is now.
+	 * @return Returns the character's name that is to go next (that is still in the game.)
+	 */
+	public void useSecretPassage(Player player, Board board){ 
+		if(board.isSecretRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+			String room = board.getSecretRoom(player.getPlayerXCord(), player.getPlayerYCord());
+			if(room == "conservatory"){
+				movePlayer(board, player, 5, 7);
+			}
+			if(room == "study"){
+				movePlayer(board, player, 18, 19);
+			}
+			if(room == "lounge"){
+				movePlayer(board, player, 19, 4);
+			}
+			if(room == "kitchen"){
+				movePlayer(board, player, 3, 6);
+			}
+		}
 	}
 
 	

@@ -3,29 +3,34 @@ package code.logic;
 import java.util.ArrayList;
 
 import code.board.Board;
+import code.gui.GUI;
 import code.player.Player;
 
 
 //how a players turn should go
 public class TurnLogic {
-	
-	public void completeTurn(Player player, Board board){
+
+
+	public void completeTurn(Player player, Board board, GUI gui){
+		System.out.println("asdfsd");
 		DiceRoll dice = new DiceRoll();
 		PlayerLogic playerLogic = new PlayerLogic();
 		int diceRoll = dice.rollOneDice();
 		player.setMovesLeft(diceRoll);
+		gui.getNumberMovesLeft().setText("" + diceRoll);
+		gui.getNumberMovesLeft().repaint();
+		gui.getPlayerName().setText("" + player.getCharacterName());
+		gui.getPlayerName().repaint();
 		String roomName = board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord()); 
-		if(roomName.equals("kitchen") || roomName.equals("study") || roomName.equals("conservatory") || roomName.equals("lounge")){
-			//lets users have a special part of their turn where they can pick to go through a special tunnel here
-			//should be a pop up
-		}
 		
 		//get user input of where they want to go
 		
 		int playerMoves = player.getMovesLeft();
-		for(int i = 0; i < playerMoves; i++){
-			playerLogic.movePlayer(board, player, 1, 1); //get user input from gui or something
-			//popup if user wants to end his move stage of turn
+		while(playerMoves != 0){
+			//wait for them to click and update
+			playerMoves = player.getMovesLeft();
+			gui.getNumberMovesLeft().setText(playerMoves +"");
+			gui.getNumberMovesLeft().repaint();
 		}
 		//player is out of moves left
 		//put in a pop up asking if player wants to final guess or normal guess

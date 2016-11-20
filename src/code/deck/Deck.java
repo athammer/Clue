@@ -12,13 +12,13 @@ public class Deck {
 	
 	
 	/** The deck of cards that will be given out */
-	ArrayList<String> _deck;
+	ArrayList<String> _deck = new ArrayList<String>();
 	
 	/** The deck of cards in full */
-	ArrayList<String> _deckCopy;
+	ArrayList<String> _deckCopy = new ArrayList<String>();
 
 	/** ArrayList of string that contain all the "crime" cards */
-	ArrayList<String> _crimeCards;
+	ArrayList<String> _crimeCards =  new ArrayList<String>();
 	/** The murder who committed the crime */
 	String _murderer;
 	/** The weapon used in the crime */
@@ -109,30 +109,23 @@ public class Deck {
 		//18 cards in play
 		Collections.shuffle(_deck); //shuffles the cards
 		int playerCount = Main._activePlayers.size();
-		int cardCountPerPlayer = (int) Math.floor(18 / playerCount); //don't think we need this as int, but need it to round down always
-		for(int i = 0; i < playerCount; i++){
-			for(int j = 0; j < cardCountPerPlayer; j++){
-				Main._activePlayers.get(i).addPlayerCards(_deck.get(j));
-				
+		int rotate = 0;
+		while(!_deck.isEmpty()){
+			Main._activePlayers.get(rotate).addPlayerCards(_deck.get(0));
+			_deck.remove(0);
+			
+			if(rotate + 1 == playerCount){
+				rotate = -1;
 			}
-		} //might be a remainder of cards left, such as 18/5 = floor(3.6) = 3, 18-(3*5) = 3 remainder,
-		
-		for(int i = 0; i < cardCountPerPlayer * playerCount; i++){ //cant delete in while loop as it will mess up for loop(?)
-			//cardCountPerPlayer * playerCount = how many cards given out
-			_deck.remove(i);
+			rotate += 1;
 		}
-		
-		for(int i = 0; i < _deck.size(); i++){
-			Main._activePlayers.get(i).addPlayerCards(_deck.get(i));
-			//_deck.size() has to be less then players so we can safely add starting by zero on each end
-		}
-		for(int i = 0; i < _deck.size(); i++){
-			_deck.remove(i); //should make empty deck
-		}
-		if(!_deck.isEmpty()){
-			throw new Exception(); //fix if broken
-		}
-		//there prob is a better way but meh
-		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
