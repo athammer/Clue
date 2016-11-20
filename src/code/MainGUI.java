@@ -25,7 +25,7 @@ import code.gui.GUI;
 import code.player.Player;
 
 public class MainGUI {
-
+	//players should be guess all his cards for a normal guess but not for a final
 	
 
 	
