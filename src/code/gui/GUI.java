@@ -304,6 +304,7 @@ public class GUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String actionCommand = arg0.getActionCommand();
+		
 		String x = actionCommand.substring(0, 3);
 		x = x.trim();
 		String y = actionCommand.substring(3);
@@ -311,7 +312,7 @@ public class GUI implements ActionListener {
 		int xInt = Integer.parseInt(x);
 		int yInt = Integer.parseInt(y);
 		PlayerLogic pL = new PlayerLogic();
-		pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt);
+		pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt, (JButton) arg0.getSource());
 	}
 	
 	

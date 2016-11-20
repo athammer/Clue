@@ -2,6 +2,11 @@ package code.logic;
 
 import code.board.Board;
 import code.player.Player;
+
+import java.awt.Color;
+
+import javax.swing.JButton;
+
 import code.Main;
 
 public class PlayerLogic {
@@ -26,13 +31,13 @@ public class PlayerLogic {
 	}
 	
 	//TODO Fill out Java doc
-	public boolean movePlayer(Board board, Player player, int x, int y){ //moves player to x and y
+	public boolean movePlayer(Board board, Player player, int x, int y, JButton btn){ //moves player to x and y
 		
 		//when players are in a room let users leave out another door
 		
 		//let plays switch doors without using a turn
 		//make player's new location the color they are and remove the color on the old spot
-		
+		Color color = playerColor(player.getCharacterName());
 		if((board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord()) && board.isSpecialRoom(x, y)) && 
 				board.getSpecialRoom(x, y) == board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
 			//is user moving to a room and is it the same one
@@ -59,6 +64,9 @@ public class PlayerLogic {
 				//player is moving to a normal spot from a special room
 				//checks if user moved diag and if user is in a non null spot.
 				board.setBoard(player.getCharacterName(), x, y); //puts player's name in that spot
+				
+				btn.setBackground(color);
+			    btn.setForeground(color);
 				player.setXYCord(x, y);
 				player.setMovesLeft(player.movesLeft() - 1);
 				return true;
@@ -66,6 +74,8 @@ public class PlayerLogic {
 				//player is moving to a normal spot from a normal spot
 				board.setBoard(player.getCharacterName(), x, y); //puts player's name in that spot
 				board.setBoard("empty", player.getPlayerXCord(), player.getPlayerYCord());
+				btn.setBackground(color);
+			    btn.setForeground(color);
 				player.setXYCord(x, y);
 				player.setMovesLeft(player.movesLeft() - 1);
 				return true;
@@ -95,6 +105,29 @@ public class PlayerLogic {
 		}
 		
 		return null;	
+	}
+	
+	
+	public Color playerColor(String player){ //all players
+		if(player == "Ms. Scarlet"){
+			return new Color(255, 36, 0);
+		}
+		if(player == "Prof. Plum"){
+			return new Color(221,160,221);
+		}
+		if(player == "Mr. Green"){
+			return Color.green;
+		}
+		if(player == "Mrs. White"){
+			return Color.white;
+		}
+		if(player == "Mrs. Peacock"){
+			return new Color(9, 84, 190);
+		}
+		if(player == "Colonel Mustard"){
+			return new Color(227, 190, 66);
+		}
+		return null;
 	}
 	
 	/**
@@ -182,6 +215,87 @@ public class PlayerLogic {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public boolean movePlayer(Board board, Player player, int x, int y){ //moves player to x and y
+		
+		//when players are in a room let users leave out another door
+		
+		//let plays switch doors without using a turn
+		//make player's new location the color they are and remove the color on the old spot
+		
+		if((board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord()) && board.isSpecialRoom(x, y)) && 
+				board.getSpecialRoom(x, y) == board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+			//is user moving to a room and is it the same one
+			//allows users to switch between doors
+			player.setXYCord(x, y);
+			return true;
+		}
+		
+		
+		
+		if(board.isValidLocation(x, y) && board.moveCorrectly(x, y, player) && player.hasMovesLeft()){ 
+			if(board.isSpecialRoom(x, y)){//player moved to a special room
+				//checks if user moved diag and if user is in a non null spot.
+				if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){//player is moving to special room from a special room
+					player.setXYCord(x, y);
+					player.setMovesLeft(player.movesLeft() - 1);
+					return true;
+				}
+				board.setBoard("empty", player.getPlayerXCord(), player.getPlayerYCord()); //old player location
+				player.setXYCord(x, y);
+				player.setMovesLeft(player.movesLeft() - 1);
+				return true;
+			}else if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){ 
+				//player is moving to a normal spot from a special room
+				//checks if user moved diag and if user is in a non null spot.
+				board.setBoard(player.getCharacterName(), x, y); //puts player's name in that spot
+
+				player.setXYCord(x, y);
+				player.setMovesLeft(player.movesLeft() - 1);
+				return true;
+			}else{
+				//player is moving to a normal spot from a normal spot
+				board.setBoard(player.getCharacterName(), x, y); //puts player's name in that spot
+				board.setBoard("empty", player.getPlayerXCord(), player.getPlayerYCord());
+				player.setXYCord(x, y);
+				player.setMovesLeft(player.movesLeft() - 1);
+				return true;
+			}
+
+		}else{
+			return false;
+		}	
+	}
 	
 
 }
