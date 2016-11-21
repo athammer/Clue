@@ -20,6 +20,7 @@ public class Main {
 	/*time constraints will lead to global varaibles....*/
 	public static Board board;
 	public static GUI gui;
+	public static int reBounce = 0; //kinda
 	
 	//if static has some special convention im ignoring it
 	/**
@@ -86,7 +87,6 @@ public class Main {
 			gui.getPlayerName().setText(currentPlayer.getCharacterName());
 			tL.completeTurn(currentPlayer, board, gui);
 			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
-			gui.getConsoleLabel().setText("Current players turn: " + _currentPlayerTurn);
 		}
 		winnerGUI annoying = new winnerGUI(_activePlayers.get(0));
 		

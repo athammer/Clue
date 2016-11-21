@@ -1,6 +1,7 @@
 package code.logic;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import code.Main;
 import code.board.Board;
@@ -55,7 +56,9 @@ Your opponents may continue to move your token into the various Rooms where they
 									Main.gui.getNumberMovesLeft().setText("0");
 									pLogic.findPlayer(Main._currentPlayerTurn).setMovesLeft(0);
 									//alert user that card was found and what it is
-									Main.gui.getConsoleLabel().setText("Found a card that match your guess off of " + playerNext.getCharacterName() + "! Check knowCards.");
+									Main.gui.getConsoleLabel().setText("Found the card " + guessedCards + " off of " + playerNext.getCharacterName() + "!");getClass();
+									Main.reBounce = 1;
+									System.out.println(Main.reBounce);
 									return true;
 								}
 							}
@@ -69,6 +72,8 @@ Your opponents may continue to move your token into the various Rooms where they
 		Main.gui.getNumberMovesLeft().setText("0");
 		pLogic.findPlayer(Main._currentPlayerTurn).setMovesLeft(0);
 		Main.gui.getConsoleLabel().setText("No cards found that matched your guess!");
+		Main.reBounce = 1;
+		System.out.println(Main.reBounce);
 		return false;
 		
 	}
@@ -94,20 +99,22 @@ Your opponents may continue to move your token into the various Rooms where they
 				}
 			}
 			Main._activePlayers = winnerPlayer; //size should be one and game should end
+			Main.reBounce = 1;
+			System.out.println(Main.reBounce);
+			return true;
 		}else{
 			//player loses
 			player.setMovesLeft(0);
 			Main.gui.getNumberMovesLeft().setText("RIP");
 			player.setLoserPlayer(true);
 			Main._activePlayers.remove(player);
-			if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
-				
-			}	
 			
 			//rip
 			
 		}
 		//Check if player is in the room where the 
+		Main.reBounce = 1;
+		System.out.println(Main.reBounce);
 		return false;
 		
 	}
