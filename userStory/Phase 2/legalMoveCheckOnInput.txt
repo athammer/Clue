@@ -1,2 +1,0 @@
-As a player, I want to be able to input my move into the system and only have legal moves accepted so that my wife cannot 
-claim my mistakes were attempts at cheating so that we know everyone is following the rules.

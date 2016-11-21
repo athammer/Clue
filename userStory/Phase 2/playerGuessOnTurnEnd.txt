@@ -1,3 +1,0 @@
-As a player, I want to be able to enter a suggestion when my turn ends in a room so that I get more information needed.
-
-

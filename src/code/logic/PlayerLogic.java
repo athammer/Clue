@@ -54,7 +54,7 @@ public class PlayerLogic {
 				//checks if user moved diag and if user is in a non null spot.
 				if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){//player is moving to special room from a special room
 					player.setXYCord(x, y);
-					player.setMovesLeft(player.movesLeft() - 1);
+					player.setMovesLeft(0);
 					return true;
 				}
 				JButton[][] JBArray = Main.gui.getJButtonArray();
@@ -63,7 +63,7 @@ public class PlayerLogic {
 				oldbtn.setForeground(Color.lightGray);
 				board.setBoard("empty", player.getPlayerXCord(), player.getPlayerYCord()); //old player location
 				player.setXYCord(x, y);
-				player.setMovesLeft(player.movesLeft() - 1);
+				player.setMovesLeft(0);
 				return true;
 			}else if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){ 
 				//player is moving to a normal spot from a special room
