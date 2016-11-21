@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import code.Main;
 import code.board.Board;
+import code.gui.winnerGUI;
 import code.player.Player;
 
 public class GuessLogic {
@@ -35,25 +36,39 @@ Your opponents may continue to move your token into the various Rooms where they
 	 * @throws Exception 
 	 */
 	public boolean makeAGuess(ArrayList<String> guessCards, Player player, String roomName){
+		PlayerLogic pLogic = new PlayerLogic();
 		if(isValidGuess(guessCards, roomName)){
-			PlayerLogic pLogic = new PlayerLogic();
+			
 			String next = pLogic.whosNext(player.getCharacterName());
-			while(!next.equals(player.getCharacterName())){ //while player is not him/herself
+			for(int i = 0; i < Main._playerArray.size() -1; i++){
 				Player playerNext = pLogic.findPlayer(next);
 				for(String card : playerNext.getPlayerCards()){
 					for(String guessedCards : guessCards){
-						if(card.equals(guessedCards)){
-							//card found
-							player.addKnownCards(guessedCards);
-							player.addAllCards(guessedCards);
-							//alert user that card was found and what it is
-							return true;
+						if(card.equalsIgnoreCase(guessedCards)){
+							for(String playerAlreadyKnows : player.getAllCards()){
+								if(card.equalsIgnoreCase(playerAlreadyKnows)){
+									System.out.println("card found but player already knew this so skipping it");
+								}else{
+									System.out.println("card found ");
+									player.addKnownCards(guessedCards);
+									player.addAllCards(guessedCards);
+									Main.gui.getNumberMovesLeft().setText("0");
+									pLogic.findPlayer(Main._currentPlayerTurn).setMovesLeft(0);
+									//alert user that card was found and what it is
+									Main.gui.getConsoleLabel().setText("Found a card that match your guess off of " + playerNext.getCharacterName() + "! Check knowCards.");
+									return true;
+								}
+							}
+
 						}
 					}
 				}
 			}
 			
 		}
+		Main.gui.getNumberMovesLeft().setText("0");
+		pLogic.findPlayer(Main._currentPlayerTurn).setMovesLeft(0);
+		Main.gui.getConsoleLabel().setText("No cards found that matched your guess!");
 		return false;
 		
 	}
@@ -69,12 +84,13 @@ Your opponents may continue to move your token into the various Rooms where they
 	 * @throws Exception 
 	 */
 	public boolean makeAFinalGuess(ArrayList<String> guessCards, Player player, String roomName, Board board){
-		if(makeAGuess(guessCards, player, roomName)){
+		if(!(makeAGuess(guessCards, player, roomName))){
 			//player wins
 			ArrayList<Player> winnerPlayer = new ArrayList<Player>();
 			for(Player player1 : Main._activePlayers){
 				if(player.equals(player1)){
 					winnerPlayer.add(player1); //winner
+					winnerGUI annoying = new winnerGUI(player);
 				}
 			}
 			Main._activePlayers = winnerPlayer; //size should be one and game should end
@@ -118,15 +134,18 @@ Your opponents may continue to move your token into the various Rooms where they
 			} else if(cardType.equals("Location")){
 				counter += 1;
 			} else{
+				System.out.println("bad card");
 				return false;
 				//card not found did user enter a bad card? this should not be allowed in the gui
 			}
 			
 			if(roomName.equals(card)){
+				System.out.println("in room of guess");
 				cardFound = true;
 			}
 		}
 		if(counter == 3 && cardFound == true){
+			System.out.println("good guess");
 			return true;
 		}
 		return false;

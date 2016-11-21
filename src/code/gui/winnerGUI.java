@@ -9,14 +9,16 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import code.player.Player;
+
 public class winnerGUI {
 
-	public winnerGUI() {
-		JFrame winner = new JFrame("Winner winner!");
+	public winnerGUI(Player player) {
+		JFrame winner = new JFrame("Winner winner! Good job " + player.getCharacterName());
 		winner.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		winner.getContentPane().setBackground(Color.ORANGE);
 		
-		JLabel lblCongratulationsplayer = new JLabel("congratulations [player]!!!!");
+		JLabel lblCongratulationsplayer = new JLabel("congratulations " + player.getCharacterName());
 		lblCongratulationsplayer.setForeground(Color.MAGENTA);
 		lblCongratulationsplayer.setFont(new Font("Tahoma", Font.PLAIN, 47));
 		GroupLayout groupLayout = new GroupLayout(winner.getContentPane());

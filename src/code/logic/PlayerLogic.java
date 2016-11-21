@@ -41,8 +41,9 @@ public class PlayerLogic {
 		if((board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord()) && board.isSpecialRoom(x, y)) && 
 				board.getSpecialRoom(x, y) == board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
 			//is user moving to a room and is it the same one
-			//allows users to switch between doors
+			//allows users to switch between doors in the same room
 			player.setXYCord(x, y);
+			System.out.println("User switched doors within the same room.");
 			return true;
 		}
 		
@@ -89,6 +90,8 @@ public class PlayerLogic {
 			}
 
 		}else{
+			Main.gui.getConsoleLabel().setText("Invalid move!");
+			System.out.println("invalid move");
 			return false;
 		}	
 	}
@@ -143,6 +146,9 @@ public class PlayerLogic {
 	 * @return Returns the character's name that is to go next (that is still in the game.)
 	 */
 	public String whosNextTurn(String currentPlayerTurn){ //only players playing(no losers)
+		if(Main._activePlayers.size() == 1){
+			return Main._activePlayers.get(0).getCharacterName();
+		}
 		for(int i = 0; i < Main._activePlayers.size(); i++){
 			
 			if(Main._activePlayers.get(i).getCharacterName().equals(currentPlayerTurn)){
@@ -199,11 +205,6 @@ public class PlayerLogic {
 	
 	
 	
-	/**
-	 * Follows Clue's ordering but skips people who lost or not in the game.
-	 * @param  currentPlayerTurn A string that is the is the name of the character whos turn it is now.
-	 * @return Returns the character's name that is to go next (that is still in the game.)
-	 */
 	public void useSecretPassage(Player player, Board board){ 
 		if(board.isSecretRoom(player.getPlayerXCord(), player.getPlayerYCord())){
 			String room = board.getSecretRoom(player.getPlayerXCord(), player.getPlayerYCord());

@@ -1,6 +1,7 @@
 package code;
 
 import code.gui.GUI;
+import code.gui.winnerGUI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,12 +81,14 @@ public class Main {
 		gui = new GUI(board);
 		PlayerLogic pLogic = new PlayerLogic();
 		TurnLogic tL = new TurnLogic();
-		while(_activePlayers.size() != 1){
+		while(_activePlayers.size() != 1 && _activePlayers.contains(pLogic.findPlayer(_currentPlayerTurn))){
 			Player currentPlayer = pLogic.findPlayer(_currentPlayerTurn);
 			gui.getPlayerName().setText(currentPlayer.getCharacterName());
 			tL.completeTurn(currentPlayer, board, gui);
 			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
+			gui.getConsoleLabel().setText("Current players turn: " + _currentPlayerTurn);
 		}
+		winnerGUI annoying = new winnerGUI(_activePlayers.get(0));
 		
 		//if we get here the game /should/ be done
 	}

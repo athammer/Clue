@@ -33,6 +33,9 @@ public class TurnLogic {
 			gui.getNumberMovesLeft().repaint();
 		}
 		
+		//let players guess with no turns left
+		//make sure when players enter a room they cant move anymore????
+		
 	}
 	
 

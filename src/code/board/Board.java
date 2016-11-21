@@ -76,7 +76,7 @@ public class Board {
 		
 		//Study
 		String stdy = "study";
-		board[0][0] = "secret passage";
+		board[0][0] = "secretStudy";
 		board[0][1] = room;
 		board[0][2] = room;
 		board[0][3] = room;
@@ -131,7 +131,7 @@ public class Board {
 				board[h][w] = room;
 			}
 		}
-		board[0][23] = "secret passage";
+		board[0][23] = "secretLounge";
 		board[5][17] = lnge;
 		
 		//Libary
@@ -205,7 +205,7 @@ public class Board {
 		board[19][0] = null;
 		board[19][5] = "empty";
 		/*------------------*/
-		board[23][0] = "secret passage";
+		board[23][0] = "secretConservatory";
 		board[19][4] = cty;
 		
 		//Ball Room
@@ -248,7 +248,7 @@ public class Board {
 		/*Over written*/
 		board[18][23] = null;
 		/*------------------*/
-		board[23][23] = "secret passage";
+		board[23][23] = "secretKitchen";
 		board[18][19] = ktchn;
 		
 		//Staircase
@@ -350,27 +350,36 @@ public class Board {
 		
 		moveCount = Math.abs(yMoveCount) + moveCount;
 		String room = getSpecialRoom(player.getPlayerXCord(),player.getPlayerYCord());
-		if(room != null && (room.equals("kitchen") || room.equals("study") || room.equals("conservatory") || room.equals("lounge"))){
+		boolean hasPassage = isSecretRoom(player.getPlayerXCord(),player.getPlayerYCord());
+		System.out.println("X: " + x + "Y: " + y );
+		String newRoom = getSpecialRoom(x, y);
+		System.out.println(newRoom);
+		if(room != null && hasPassage && newRoom != null){ //you are in a room and it has a secret passage
 			System.out.println("moving to special room");
 			//the above if statement checks if user is currently in a room they can teleport
 			//the stuff below allows people to tp using secret rooms
-			if(room.equals("kitchen") && getSpecialRoom(x,y).equals("study")){
+			if(room.equals("kitchen") && newRoom.equals("study")){
 				player.setMovesLeft(1); //set to one so users cant keep moving once tping
+				System.out.println("kitchen -> Study");
 				return true;
 			}
-			if(room.equals("study") && getSpecialRoom(x,y).equals("kitchen")){
+			if(room.equals("study") && newRoom.equals("kitchen")){
+				System.out.println("study -> kitchen");
 				player.setMovesLeft(1);
 				return true;
 			}
-			if(room.equals("conservatory") && getSpecialRoom(x,y).equals("lounge")){
+			if(room.equals("conservatory") && newRoom.equals("lounge")){
+				System.out.println("conservatory -> lounge");
 				player.setMovesLeft(1);
 				return true;
 			}
-			if(room.equals("lounge") && getSpecialRoom(x,y).equals("conservatory")){
+			if(room.equals("lounge") && newRoom.equals("conservatory")){
+				System.out.println("lounge -> conservatory");
 				player.setMovesLeft(1);
 				return true;
 			}
-			
+			System.out.println("bad move");
+			return false;
 		}
 		if(moveCount >= 2) { 
 			System.out.println("move count not less then two");
@@ -384,15 +393,17 @@ public class Board {
 	//TODO Fill out Java doc
 	//used for finding if the room is special and if so allowing the user to move through secret passages
 	//or allowing two users to be on the same spot
+	
+
 	public boolean isSpecialRoom(int x, int y){
 		//do sanity checking?
-		if(x == 3 && y == 6){
+		if((x == 3 && y == 6) || (x == 0 && y == 0)){
 			return true;
 		}
 		if((x == 4 && y == 9) || (x == 6 && y == 11) || (x == 6 && y == 12)){
 			return true;
 		}
-		if((x == 5 && y == 17)){
+		if((x == 5 && y == 17) || (x == 0 && y == 23)){
 			return true;
 		}
 		if((x == 8 && y == 6) || (x == 10 && y == 3)){
@@ -404,13 +415,13 @@ public class Board {
 		if((x == 12 && y == 1) || (x == 15 && y == 5)){
 			return true;
 		}
-		if((x == 19 && y == 4)){
+		if((x == 19 && y == 4) || (x == 23 && y == 0)){ //
 			return true;
 		}
 		if((x == 19 && y == 8) || (x == 19 && y == 15) || (x == 17 && y == 9) || (x == 17 && y == 14)){
 			return true;
 		}
-		if((x == 18 && y == 19)){
+		if((x == 18 && y == 19) || (x == 23 && y == 23)){ //
 			return true;
 		}
 		return false;
@@ -418,13 +429,13 @@ public class Board {
 	
 	public String getSpecialRoom(int x, int y){
 		//do sanity checking?
-		if(x == 3 && y == 6){
+		if((x == 3 && y == 6) || (x == 0 && y == 0)){
 			return "study";
 		}
 		if((x == 4 && y == 9) || (x == 6 && y == 11) || (x == 6 && y == 12)){
 			return "hall";
 		}
-		if((x == 5 && y == 17)){
+		if((x == 5 && y == 17) || (x == 0 && y == 23)){
 			return "lounge";
 		}
 		if((x == 8 && y == 6) || (x == 10 && y == 3)){
@@ -436,13 +447,13 @@ public class Board {
 		if((x == 12 && y == 1) || (x == 15 && y == 5)){
 			return "billard room";
 		}
-		if((x == 19 && y == 4)){
+		if((x == 19 && y == 4) || (x == 23 && y == 0)){ //
 			return "conservatory";
 		}
 		if((x == 19 && y == 8) || (x == 19 && y == 15) || (x == 17 && y == 9) || (x == 17 && y == 14)){
 			return "ball room";
 		}
-		if((x == 18 && y == 19)){
+		if((x == 18 && y == 19) || (x == 23 && y == 23)){ //
 			return "kitchen";
 		}
 		return null;
@@ -450,16 +461,16 @@ public class Board {
 	
 	public String getSecretRoom(int x, int y){
 		//do sanity checking?
-		if(x == 3 && y == 6){
+		if((x == 3 && y == 6) || (x == 0 && y == 0)){
 			return "study";
 		}
-		if((x == 5 && y == 17)){
+		if((x == 5 && y == 17) || (x == 0 && y == 23)){
 			return "lounge";
 		}
-		if((x == 19 && y == 4)){
+		if((x == 19 && y == 4) || (x == 23 && y == 0)){ //
 			return "conservatory";
 		}
-		if((x == 18 && y == 19)){
+		if((x == 18 && y == 19) || (x == 23 && y == 23)){ //
 			return "kitchen";
 		}
 		return null;
@@ -467,16 +478,16 @@ public class Board {
 	
 	public boolean isSecretRoom(int x, int y){
 		//do sanity checking?
-		if(x == 3 && y == 6){
+		if((x == 3 && y == 6) || (x == 0 && y == 0)){
 			return true;
 		}
-		if((x == 5 && y == 17)){
+		if((x == 5 && y == 17) || (x == 0 && y == 23)){
 			return true;
 		}
-		if((x == 19 && y == 4)){
+		if((x == 19 && y == 4) || (x == 23 && y == 0)){ //
 			return true;
 		}
-		if((x == 18 && y == 19)){
+		if((x == 18 && y == 19) || (x == 23 && y == 23)){ 
 			return true;
 		}
 		return false;

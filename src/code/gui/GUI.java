@@ -26,11 +26,18 @@ import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+
+/*
+ * 	at code.board.Board.moveCorrectly(Board.java:365)
+	at code.logic.PlayerLogic.movePlayer(PlayerLogic.java:51)
+	at code.gui.GUI.actionPerformed(GUI.java:383)
+ */
+
 public class GUI implements ActionListener {
 	JFrame gameFrame = new JFrame("Clue - Aaron H, Zee, Adam S, Garret");
 	JLabel numberMovesLeft = new JLabel("6");
 	JLabel playerName = new JLabel("player here");
-	JLabel consoleLabel = new JLabel("test");
+	JLabel consoleLabel = new JLabel("...loading");
 	JButton[][] jButtonArray = new JButton[25][24];
 	
 	public GUI(final Board boardObj) {
@@ -79,13 +86,15 @@ public class GUI implements ActionListener {
 			    	btn.setBackground(Color.pink);
 				    btn.setForeground(Color.pink);
 			    }
-			    if(board[x][y] == "secret passage"){
+			    if(board[x][y] != null && board[x][y].startsWith("secret")){
 			    	//when clicked should open a message askign if you want to move to the other corner room
 			    	btn.setBackground(Color.gray);
 				    btn.setForeground(Color.gray);
+				    btn.setActionCommand("tunnel");
 				    btn.addActionListener(new ActionListener() { 
 				    	public void actionPerformed(ActionEvent e) { 
 				    		PlayerLogic pL = new PlayerLogic();
+				    		Main.gui.getConsoleLabel().setText(Main._currentPlayerTurn + "used a secret passage.");
 				    		pL.useSecretPassage(pL.findPlayer(Main._currentPlayerTurn), boardObj);
 				    	} 
 				    });
@@ -166,6 +175,7 @@ public class GUI implements ActionListener {
 		console.setBackground(Color.BLACK);
 		console.setBounds(12, 9, 1381, 61);
 		gameFrame.getContentPane().add(console);
+		consoleLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
 		
 		consoleLabel.setForeground(Color.GREEN);
@@ -176,19 +186,19 @@ public class GUI implements ActionListener {
 		GroupLayout gl_console = new GroupLayout(console);
 		gl_console.setHorizontalGroup(
 			gl_console.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_console.createSequentialGroup()
-					.addGap(476)
-					.addComponent(consoleLabel)
-					.addPreferredGap(ComponentPlacement.RELATED, 636, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_console.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(consoleLabel, GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(helpButton, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_console.setVerticalGroup(
 			gl_console.createParallelGroup(Alignment.LEADING)
+				.addComponent(helpButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
 				.addGroup(gl_console.createSequentialGroup()
 					.addGap(5)
 					.addComponent(consoleLabel)
-					.addContainerGap(24, Short.MAX_VALUE))
-				.addComponent(helpButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+					.addGap(24))
 		);
 		console.setLayout(gl_console);
 		
@@ -319,7 +329,6 @@ public class GUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String actionCommand = arg0.getActionCommand();
-		System.out.println(actionCommand);
 		PlayerLogic pL = new PlayerLogic();
 		if(actionCommand == "knownCards"){
 			showCardsPopUp popUp = new showCardsPopUp(pL.findPlayer(Main._currentPlayerTurn).getKnownCards());
@@ -341,38 +350,50 @@ public class GUI implements ActionListener {
 			}else{
 				System.out.println("must be in a room to guess.");
 			}
-			
+			return;
 		}
 		else if(actionCommand == "finalGuess"){
-			guessPopUp popUp = new guessPopUp("final");
+			Board board = new Board();
+			Player player = pL.findPlayer(Main._currentPlayerTurn);
+			if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+				guessPopUp popUp = new guessPopUp("final");
+			}else{
+				System.out.println("must be in a room to guess.");
+			}
+			return;
 		}
 		else if(actionCommand == "end"){
 			numberMovesLeft.setText("0");
 			pL.findPlayer(Main._currentPlayerTurn).setMovesLeft(0);
+			return;
 			
 		}
 		else if(actionCommand == "resign"){
 			Player player = pL.findPlayer(Main._currentPlayerTurn);
+			String nextPlayer = pL.whosNext(Main._currentPlayerTurn);
+			Main._currentPlayerTurn = nextPlayer;
 			player.setMovesLeft(0);
 			numberMovesLeft.setText("RIP");
 			player.setLoserPlayer(true);
 			Main._activePlayers.remove(player);
-			Board board = new Board();
-			if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
-				
-			}
+			return;
 		}
 		else if(actionCommand == "help"){
-			
+			return;
 		}
-		String x = actionCommand.substring(0, 3);
-		x = x.trim();
-		String y = actionCommand.substring(3);
-		y = y.trim();
-		int xInt = Integer.parseInt(x);
-		int yInt = Integer.parseInt(y);
-		System.out.println(x +" " + y);
-		pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt, (JButton) arg0.getSource());
+		else if(actionCommand == "tunnel"){
+			return;
+		}else{
+			String x = actionCommand.substring(0, 3);
+			x = x.trim();
+			String y = actionCommand.substring(3);
+			y = y.trim();
+			int xInt = Integer.parseInt(x);
+			int yInt = Integer.parseInt(y);
+			System.out.println(x +" " + y);
+			pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt, (JButton) arg0.getSource());
+		}
+
 	}
 	
 	
