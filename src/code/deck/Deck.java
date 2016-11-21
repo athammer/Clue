@@ -81,12 +81,18 @@ public class Deck {
 	 * Shuffles the cards and selects a card from each 3 card categories(weapon, place, person)
 	 */
 	public void createCrime(){
-		Random rand = new Random();
+		Random r = new Random();
 		while(true){
 			//minimum + rn.nextInt(maxValue - minvalue + 1)
-			String murderer = _deck.get(rand.nextInt(5 - 0) + 1) + 0; //random 0-5
-			String weapon = _deck.get(rand.nextInt(11 - 6) + 1) + 6; 
-			String place = _deck.get(rand.nextInt(20 - 12) + 1) + 12; 
+			int Low = 0;
+			int High = 5;
+			String murderer = _deck.get(r.nextInt(High-Low) + Low);
+			Low = 6;
+			High = 11;
+			String weapon = _deck.get(r.nextInt(High-Low) + Low);
+			Low = 12;
+			High = 20;
+			String place = _deck.get(r.nextInt(High-Low) + Low);
 			_crimeCards.add(murderer);
 			_crimeCards.add(weapon);
 			_crimeCards.add(place);
@@ -109,6 +115,10 @@ public class Deck {
 		//18 cards in play
 		Collections.shuffle(_deck); //shuffles the cards
 		int playerCount = Main._activePlayers.size();
+		System.out.println(_deck.size());
+		System.out.println(_murderer);
+		System.out.println(_weapon);
+		System.out.println(_sceneOfCrime);
 		int rotate = 0;
 		while(!_deck.isEmpty()){
 			Main._activePlayers.get(rotate).addPlayerCards(_deck.get(0));

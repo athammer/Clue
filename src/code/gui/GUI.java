@@ -133,22 +133,32 @@ public class GUI implements ActionListener {
 		buttonPanel.setLayout(new BorderLayout(0, 0));
 		
 		JButton playerCards = new JButton("Get Player Cards");
+		playerCards.setActionCommand("playerCards");
+		playerCards.addActionListener(this);
 		playerCards.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		buttonPanel.add(playerCards, BorderLayout.CENTER);
 		
 		JButton knownCards = new JButton("Get \r\nKnown \r\nCards");
+		knownCards.setActionCommand("knownCards");
+		knownCards.addActionListener(this);
 		knownCards.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		buttonPanel.add(knownCards, BorderLayout.WEST);
 		
 		JButton allCards = new JButton("Get All Cards");
+		allCards.setActionCommand("allCards");
+		allCards.addActionListener(this);
 		allCards.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		buttonPanel.add(allCards, BorderLayout.EAST);
 		
 		JButton guessCards = new JButton("Guess Cards");
+		guessCards.setActionCommand("guess");
+		guessCards.addActionListener(this);
 		guessCards.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		buttonPanel.add(guessCards, BorderLayout.NORTH);
 		
 		JButton finalGuess = new JButton("Final Guess");
+		finalGuess.setActionCommand("finalGuess");
+		finalGuess.addActionListener(this);
 		finalGuess.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		buttonPanel.add(finalGuess, BorderLayout.SOUTH);
 
@@ -247,13 +257,18 @@ public class GUI implements ActionListener {
 		currentTurn.setLayout(gl_currentTurn);
 		
 		JPanel endResign = new JPanel();
+		
 		endResign.setBounds(796, 547, 351, 148);
 		gameFrame.getContentPane().add(endResign);
 		
 		JButton endTurnButton = new JButton("End Turn");
+		endTurnButton.addActionListener(this);
+		endTurnButton.setActionCommand("end");
 		endTurnButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		
 		JButton resignButton = new JButton("Resign");
+		resignButton.setActionCommand("resign");
+		resignButton.addActionListener(this);
 		resignButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		GroupLayout gl_endResign = new GroupLayout(endResign);
 		gl_endResign.setHorizontalGroup(
@@ -304,14 +319,41 @@ public class GUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String actionCommand = arg0.getActionCommand();
-		
+		System.out.println(actionCommand);
+		PlayerLogic pL = new PlayerLogic();
+		if(actionCommand == "knownCards"){
+			showCardsPopUp popUp = new showCardsPopUp(pL.findPlayer(Main._currentPlayerTurn).getKnownCards());
+			return;
+		}
+		else if(actionCommand == "playerCards"){
+			showCardsPopUp popUp = new showCardsPopUp(pL.findPlayer(Main._currentPlayerTurn).getPlayerCards());
+			return;
+		}
+		else if(actionCommand == "allCards"){
+			showCardsPopUp popUp = new showCardsPopUp(pL.findPlayer(Main._currentPlayerTurn).getAllCards());
+			return;
+		}
+		else if(actionCommand == "guess"){
+			
+		}
+		else if(actionCommand == "finalGuess"){
+			
+		}
+		else if(actionCommand == "end"){
+			
+		}
+		else if(actionCommand == "resign"){
+			
+		}
+		else if(actionCommand == "help"){
+			
+		}
 		String x = actionCommand.substring(0, 3);
 		x = x.trim();
 		String y = actionCommand.substring(3);
 		y = y.trim();
 		int xInt = Integer.parseInt(x);
 		int yInt = Integer.parseInt(y);
-		PlayerLogic pL = new PlayerLogic();
 		System.out.println(x +" " + y);
 		pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt, (JButton) arg0.getSource());
 	}
