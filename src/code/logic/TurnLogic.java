@@ -32,17 +32,6 @@ public class TurnLogic {
 			gui.getNumberMovesLeft().setText(playerMoves +"");
 			gui.getNumberMovesLeft().repaint();
 		}
-		//player is out of moves left
-		//put in a pop up asking if player wants to final guess or normal guess
-		//let player guess here
-		if(board.isSpecialRoom(player.getMovesLeft(), player.getPlayerYCord())){
-			GuessLogic guessLogic = new GuessLogic();
-			ArrayList<String> cards = null; //get information from gui
-			//should be a pop up
-			//figure out which one player wants to do on gui
-			guessLogic.makeAGuess(cards, player, roomName);
-			guessLogic.makeAFinalGuess(cards, player, roomName, board);
-		}
 		
 	}
 	

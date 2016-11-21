@@ -334,16 +334,33 @@ public class GUI implements ActionListener {
 			return;
 		}
 		else if(actionCommand == "guess"){
+			Board board = new Board();
+			Player player = pL.findPlayer(Main._currentPlayerTurn);
+			if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+				guessPopUp popUp = new guessPopUp("guess");
+			}else{
+				System.out.println("must be in a room to guess.");
+			}
 			
 		}
 		else if(actionCommand == "finalGuess"){
-			
+			guessPopUp popUp = new guessPopUp("final");
 		}
 		else if(actionCommand == "end"){
+			numberMovesLeft.setText("0");
+			pL.findPlayer(Main._currentPlayerTurn).setMovesLeft(0);
 			
 		}
 		else if(actionCommand == "resign"){
-			
+			Player player = pL.findPlayer(Main._currentPlayerTurn);
+			player.setMovesLeft(0);
+			numberMovesLeft.setText("RIP");
+			player.setLoserPlayer(true);
+			Main._activePlayers.remove(player);
+			Board board = new Board();
+			if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+				
+			}
 		}
 		else if(actionCommand == "help"){
 			

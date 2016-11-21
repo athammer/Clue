@@ -6,25 +6,41 @@ import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import code.Main;
+import code.board.Board;
+import code.logic.GuessLogic;
+import code.logic.PlayerLogic;
+import code.player.Player;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class guessPopUp {
-
-	public guessPopUp() {
-		JFrame boolPopUp = new JFrame("Please answer!");
+public class guessPopUp implements ActionListener  {
+	JFrame boolPopUp = new JFrame("Please answer!");
+	JPanel panel_2 = new JPanel();
+	
+	JPanel panel = new JPanel();
+	
+	JPanel panel_1 = new JPanel();
+	String guessType;
+	private List<JCheckBox> checkBoxes = new ArrayList<JCheckBox>();
+	public guessPopUp(String type) {
+		guessType = type;
+		
 		boolPopUp.setTitle("Guess");
 		
-		JPanel panel_2 = new JPanel();
-		
-		JPanel panel = new JPanel();
-		
-		JPanel panel_1 = new JPanel();
+
 		
 		JLabel lblIHaveNo = new JLabel("Select one from each catagory and hit the obnoxious \"Submit Guess\"");
 		lblIHaveNo.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -34,38 +50,44 @@ public class guessPopUp {
 		btnNewButton.setBackground(Color.MAGENTA);
 		btnNewButton.setForeground(Color.CYAN);
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
+		
+		JLabel lblNoteIfYou = new JLabel("Note if you are doing a final guess you cannot guess your own cards.");
+		lblNoteIfYou.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNoteIfYou.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(boolPopUp.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNoteIfYou, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+						.addComponent(lblIHaveNo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(panel, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblIHaveNo, GroupLayout.PREFERRED_SIZE, 444, Short.MAX_VALUE))
-					.addContainerGap())
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))
+					.addGap(151))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblIHaveNo, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(lblIHaveNo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblNoteIfYou)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
-						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		
@@ -73,76 +95,126 @@ public class guessPopUp {
 		lblWeapons.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(lblWeapons);
 		
-		JCheckBox chckbxRope = new JCheckBox("Rope        ");
-		panel.add(chckbxRope);
+		JCheckBox weapon1 = new JCheckBox("Rope        ");
+		checkBoxes.add(weapon1);
+		panel.add(weapon1);
 		
-		JCheckBox chckbxLeadPipe = new JCheckBox("Lead Pipe");
-		panel.add(chckbxLeadPipe);
+		JCheckBox weapon2 = new JCheckBox("Lead Pipe");
+		checkBoxes.add(weapon2);
+		panel.add(weapon2);
 		
-		JCheckBox chckbxKnife = new JCheckBox("Knife        ");
-		panel.add(chckbxKnife);
+		JCheckBox weapon3 = new JCheckBox("Knife        ");
+		checkBoxes.add(weapon3);
+		panel.add(weapon3);
 		
-		JCheckBox chckbxWrench = new JCheckBox("Wrench     ");
-		panel.add(chckbxWrench);
+		JCheckBox weapon4 = new JCheckBox("Wrench     ");
+		checkBoxes.add(weapon4);
+		panel.add(weapon4);
 		
-		JCheckBox chckbxCandlestick = new JCheckBox("Candlestick");
-		panel.add(chckbxCandlestick);
+		JCheckBox weapon5 = new JCheckBox("Candlestick");
+		checkBoxes.add(weapon5);
+		panel.add(weapon5);
 		
-		JCheckBox chckbxPistol = new JCheckBox("Pistol    ");
-		panel.add(chckbxPistol);
+		JCheckBox weapon6 = new JCheckBox("Pistol    ");
+		checkBoxes.add(weapon6);
+		panel.add(weapon6);
 		
 		JLabel lblRooms = new JLabel("Rooms and Stuff");
 		lblRooms.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_2.add(lblRooms);
 		
-		JCheckBox chckbxBallroom = new JCheckBox("Ballroom");
-		panel_2.add(chckbxBallroom);
+		JCheckBox room1 = new JCheckBox("Ballroom");
+		checkBoxes.add(room1);
+		panel_2.add(room1);
 		
-		JCheckBox chckbxConservatory = new JCheckBox("Conservatory");
-		panel_2.add(chckbxConservatory);
+		JCheckBox room2 = new JCheckBox("Conservatory");
+		checkBoxes.add(room2);
+		panel_2.add(room2);
 		
-		JCheckBox chckbxBilliardRoom = new JCheckBox("Billiard Room");
-		panel_2.add(chckbxBilliardRoom);
+		JCheckBox room3 = new JCheckBox("Billiard Room");
+		checkBoxes.add(room3);
+		panel_2.add(room3);
 		
-		JCheckBox chckbxLibrary = new JCheckBox("Library                 ");
-		panel_2.add(chckbxLibrary);
+		JCheckBox room4 = new JCheckBox("Library                 ");
+		checkBoxes.add(room4);
+		panel_2.add(room4);
 		
-		JCheckBox chckbxStudy = new JCheckBox("Study                            ");
-		panel_2.add(chckbxStudy);
+		JCheckBox room5 = new JCheckBox("Study                            ");
+		checkBoxes.add(room5);
+		panel_2.add(room5);
 		
-		JCheckBox chckbxHall = new JCheckBox("Hall                           ");
-		panel_2.add(chckbxHall);
+		JCheckBox room6 = new JCheckBox("Hall                           ");
+		checkBoxes.add(room6);
+		panel_2.add(room6);
 		
-		JCheckBox chckbxLounge = new JCheckBox("Lounge                 ");
-		panel_2.add(chckbxLounge);
+		JCheckBox room7 = new JCheckBox("Lounge                 ");
+		checkBoxes.add(room7);
+		panel_2.add(room7);
 		
-		JCheckBox chckbxDiningRoom = new JCheckBox("Dining Room              ");
-		panel_2.add(chckbxDiningRoom);
+		JCheckBox room8 = new JCheckBox("Dining Room              ");
+		checkBoxes.add(room8);
+		panel_2.add(room8);
 		
-		JCheckBox chckbxKitchen = new JCheckBox("Kitchen                    ");
-		panel_2.add(chckbxKitchen);
+		JCheckBox room9 = new JCheckBox("Kitchen                    ");
+		checkBoxes.add(room9);
+		panel_2.add(room9);
 		
 		JLabel lblCharacters = new JLabel("Characters");
 		lblCharacters.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(lblCharacters);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Prof. Plum");
-		panel_1.add(chckbxNewCheckBox_1);
+		JCheckBox char1 = new JCheckBox("Prof. Plum");
+		checkBoxes.add(char1);
+		panel_1.add(char1);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Colonel Mustard");
-		panel_1.add(chckbxNewCheckBox_2);
+		JCheckBox char2 = new JCheckBox("Colonel Mustard");
+		checkBoxes.add(char2);
+		panel_1.add(char2);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Mr. Green");
-		panel_1.add(chckbxNewCheckBox_3);
+		JCheckBox char3 = new JCheckBox("Mr. Green");
+		checkBoxes.add(char3);
+		panel_1.add(char3);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Mrs. Peacock");
-		panel_1.add(chckbxNewCheckBox_4);
+		JCheckBox char4 = new JCheckBox("Mrs. Peacock");
+		checkBoxes.add(char4);
+		panel_1.add(char4);
 		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Ms. Scarlet");
-		panel_1.add(chckbxNewCheckBox_5);
+		JCheckBox char5 = new JCheckBox("Ms. Scarlet");
+		checkBoxes.add(char5);
+		panel_1.add(char5);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Mrs. White");
-		panel_1.add(chckbxNewCheckBox);
+		JCheckBox char6 = new JCheckBox("Mrs. White");
+		checkBoxes.add(char6);
+		panel_1.add(char6);
 		boolPopUp.getContentPane().setLayout(groupLayout);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		ArrayList<String> infos = new ArrayList<String>();
+	    for (JCheckBox checkBox : checkBoxes) {
+	        if (checkBox.isSelected()) {
+	            infos.add(checkBox.getText());
+	            for(String guess : infos){
+	    			Board board = new Board();
+	    			PlayerLogic pL = new PlayerLogic();
+	    			Player player = pL.findPlayer(Main._currentPlayerTurn);
+	            	if(guess == board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+	            		String room = board.getSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord());
+	            		GuessLogic gL = new GuessLogic();
+	            		if(guessType == "guess"){
+	            			gL.makeAGuess(infos, player, room);
+	            		}else{
+	            			gL.makeAFinalGuess(infos, player, room, Main.board);
+	            		}
+	            		
+	            	}
+	            }
+	            if(infos.size() != 3){
+	            	System.out.println("you didnt enter 3 values, dont blame me if it crashes.");
+	            }
+	        }
+	    }
+		
 	}
 }

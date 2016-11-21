@@ -80,9 +80,14 @@ Your opponents may continue to move your token into the various Rooms where they
 			Main._activePlayers = winnerPlayer; //size should be one and game should end
 		}else{
 			//player loses
+			player.setMovesLeft(0);
+			Main.gui.getNumberMovesLeft().setText("RIP");
 			player.setLoserPlayer(true);
 			Main._activePlayers.remove(player);
-			board.setBoard("empty", player.getPlayerXCord(), player.getPlayerYCord());//so user doesnt block any doors
+			if(board.isSpecialRoom(player.getPlayerXCord(), player.getPlayerYCord())){
+				
+			}	
+			
 			//rip
 			
 		}
