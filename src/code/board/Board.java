@@ -334,7 +334,7 @@ public class Board {
 	//by doing this we kidna force the user to select each location he wants to move one by one till he runs out of moves.
 	//roll a 7, you get to move 7 times one space at a time(not like we get points off for it)
 	public boolean moveCorrectly(int x, int y, Player player){
-		
+		System.out.println(player.getPlayerXCord() + "  " + player.getPlayerYCord());
 		//kitchen->study, conservatory->lounge, study->kitchen, lounge->conservatory
 		int oldXPosition = player.getPlayerXCord();
 		int oldYPosition = player.getPlayerYCord();
@@ -343,10 +343,15 @@ public class Board {
 			return false;
 		}
 		int moveCount = 0;
-		if(oldXPosition < x) { moveCount += 1; } //should work
-		if(oldYPosition < y) { moveCount += 1; }
+		moveCount = (oldXPosition - x);
+		moveCount = Math.abs(moveCount);
+		//suprisenly complicated
+		int yMoveCount = (oldYPosition - y);
+		
+		moveCount = Math.abs(yMoveCount) + moveCount;
 		String room = getSpecialRoom(player.getPlayerXCord(),player.getPlayerYCord());
-		if(room != null && (room.equals("kitchen") || room.equals("study") || room.equals("conservatory") || room.equalsIgnoreCase("lounge"))){
+		if(room != null && (room.equals("kitchen") || room.equals("study") || room.equals("conservatory") || room.equals("lounge"))){
+			System.out.println("moving to special room");
 			//the above if statement checks if user is currently in a room they can teleport
 			//the stuff below allows people to tp using secret rooms
 			if(room.equals("kitchen") && getSpecialRoom(x,y).equals("study")){
@@ -368,9 +373,12 @@ public class Board {
 			
 		}
 		if(moveCount >= 2) { 
+			System.out.println("move count not less then two");
 			return false;
+		}else{
+			System.out.println("move count less then two");
+			return true;
 		}
-		return true;	
 	}
 	
 	//TODO Fill out Java doc

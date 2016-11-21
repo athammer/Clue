@@ -312,8 +312,10 @@ public class GUI implements ActionListener {
 		int xInt = Integer.parseInt(x);
 		int yInt = Integer.parseInt(y);
 		PlayerLogic pL = new PlayerLogic();
+		System.out.println(x +" " + y);
 		pL.movePlayer(Main.board, pL.findPlayer(Main._currentPlayerTurn), xInt, yInt, (JButton) arg0.getSource());
 	}
+	
 	
 	
 }

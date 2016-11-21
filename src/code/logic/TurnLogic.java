@@ -12,7 +12,7 @@ public class TurnLogic {
 
 
 	public void completeTurn(Player player, Board board, GUI gui){
-		System.out.println("asdfsd");
+		
 		DiceRoll dice = new DiceRoll();
 		PlayerLogic playerLogic = new PlayerLogic();
 		int diceRoll = dice.rollOneDice();

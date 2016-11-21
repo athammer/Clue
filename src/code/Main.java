@@ -16,8 +16,9 @@ import code.player.Player;
 
 public class Main {
 	
-	
+	/*time constraints will lead to global varaibles....*/
 	public static Board board;
+	public static GUI gui;
 	
 	//if static has some special convention im ignoring it
 	/**
@@ -76,7 +77,7 @@ public class Main {
 		deck.giveCards(); //gives players cards
 		_currentPlayerTurn = "Ms. Scarlet"; //who starts
 		//load the gui here after everyone loads
-		GUI gui = new GUI(board);
+		gui = new GUI(board);
 		PlayerLogic pLogic = new PlayerLogic();
 		TurnLogic tL = new TurnLogic();
 		while(_activePlayers.size() != 1){
