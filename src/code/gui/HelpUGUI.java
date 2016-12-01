@@ -15,8 +15,9 @@ public class HelpUGUI {
 	JFrame gameFrame = new JFrame("You need help.");
 	private JTextField txtIfYouAre;
 	public HelpUGUI(){
-		
+		gameFrame.setVisible(true);
 		JPanel panel = new JPanel();
+		panel.setVisible(true);
 		GroupLayout groupLayout = new GroupLayout(gameFrame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

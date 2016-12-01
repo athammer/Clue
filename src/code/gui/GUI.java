@@ -379,6 +379,7 @@ public class GUI implements ActionListener {
 			return;
 		}
 		else if(actionCommand == "help"){
+			HelpUGUI helpPLS = new HelpUGUI();
 			return;
 		}
 		else if(actionCommand == "tunnel"){

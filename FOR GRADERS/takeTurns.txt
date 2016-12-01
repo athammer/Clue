@@ -1,0 +1,5 @@
+User Story #1 -- submit details in takeTurns.txt
+	1.) * Includes all 6 players
+		At the start it lets you choose how many players you want in the game, so it can be 2-6. All 6 players are shown on the map.
+	2.) * Defines correct player move rotation
+		Just spam end turn and you will see it works. Also works if you limit the ammount of players.

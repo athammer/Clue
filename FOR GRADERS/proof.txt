@@ -1,0 +1,11 @@
+User Story #7 -- submit details in proof.txt
+	1.) * When next player holds card disproving suggestion, shows that player's name & the card
+		Yup if a player guesses and it is found it is shown in the console above the board.
+	2.) * When next player cannot disprove suggestion, but player-after-next holds card disproving suggestion, shows player-after-next's name & the card
+		Same as above.
+	3.) * When only player before suggesting player can disprove suggestion, shows player-before-suggesting-player's name & the card
+		See above.
+	4.)  * When only suggesting player can disprove suggestion, shows that nobody can disprove suggestion
+		Yup, it will show in console that no players had any cards that could prove you wrong.
+	5.) * When no player can disprove suggestion, shows that nobody can disprove suggestion
+		Same princable above applies here.
