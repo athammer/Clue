@@ -16,25 +16,32 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
 
 public class showCardsPopUp {
 
 	public showCardsPopUp(ArrayList<String> cards) {
 		JFrame showCards = new JFrame("Player cards");
-		showCards.setSize(600, 500);
+		showCards.setSize(701, 500);
 		showCards.setVisible(true);
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		GroupLayout groupLayout = new GroupLayout(showCards.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
 		);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		showCards.getContentPane().setLayout(groupLayout);
 		showCards.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{showCards.getContentPane(), panel}));
 		for(String card : cards){

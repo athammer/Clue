@@ -12,10 +12,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import code.Main;
+import code.logic.PlayerLogic;
+
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
 
 public class LetGuessOnTurnEnd implements ActionListener{
 	JFrame frame = new JFrame();
+	private JTextField txtDontHitThe;
 	public LetGuessOnTurnEnd(){
 		frame.getContentPane().setBackground(Color.GRAY);
 		frame.setSize(600, 500);
@@ -52,25 +58,49 @@ public class LetGuessOnTurnEnd implements ActionListener{
 		btnFinalGuess.setActionCommand("final");
 		btnFinalGuess.addActionListener(this);
 		btnFinalGuess.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		
+		JButton btnNewButton = new JButton("No Guess");
+		btnNewButton.setBackground(Color.CYAN);
+		btnNewButton.setForeground(Color.BLUE);
+		btnNewButton.setBackground(Color.RED);
+		btnNewButton.setActionCommand("none");
+		btnNewButton.addActionListener(this);
+		btnNewButton.setOpaque(true);
+		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 54));
+		
+		txtDontHitThe = new JTextField();
+		txtDontHitThe.setFont(new Font("Impact", Font.PLAIN, 16));
+		txtDontHitThe.setText("dont hit the x in the corner unless you want to restart this, its a feature");
+		txtDontHitThe.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(btnFinalGuess, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(btnFinalGuess, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+									.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(63)
+							.addComponent(txtDontHitThe, GroupLayout.PREFERRED_SIZE, 482, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+					.addGap(71)
+					.addComponent(txtDontHitThe, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addGap(72)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnFinalGuess, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
@@ -83,8 +113,12 @@ public class LetGuessOnTurnEnd implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
+		if(actionCommand == "none"){
+			frame.dispose();
+			Main.reBounce = 1; //as intended :)
+			return;
+		}
 		guessPopUp popUp = new guessPopUp(actionCommand);
 		frame.dispose();
 	}
-
 }

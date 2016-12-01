@@ -1,3 +1,8 @@
+//when players enter a room let them choose between final guessing or normal guessing
+//when player wins make gui and stuff
+//fix gui
+
+
 package code;
 
 import code.gui.GUI;
@@ -41,6 +46,11 @@ public class Main {
 	 */
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception{
+		System.out.println("==================================================");
+		System.out.println("==================================================");
+		System.out.println("=========================NOTICE THIS PLEASE=========================");
+		System.out.println("=========================NEEDS INPUT=========================");
+		System.out.println("==================================================");
 		System.out.println("How many players are playing (no more then 6)? ");
 		Scanner scan = new Scanner(System.in); 
 		int playerCount = scan.nextInt();
@@ -50,6 +60,7 @@ public class Main {
 					break;
 				}
 			}
+
 			System.out.println("How many players are playing (no more then 6)? ");
 			scan = new Scanner(System.in);
 			playerCount = scan.nextInt();

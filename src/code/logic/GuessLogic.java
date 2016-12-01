@@ -94,8 +94,12 @@ Your opponents may continue to move your token into the various Rooms where they
 			ArrayList<Player> winnerPlayer = new ArrayList<Player>();
 			for(Player player1 : Main._activePlayers){
 				if(player.equals(player1)){
+					System.out.println("player wins");
 					winnerPlayer.add(player1); //winner
 					winnerGUI annoying = new winnerGUI(player);
+					Main.gui.getGameFrame().getContentPane().removeAll();
+					Main.gui.getGameFrame().repaint();
+					//let players play again?
 				}
 			}
 			Main._activePlayers = winnerPlayer; //size should be one and game should end

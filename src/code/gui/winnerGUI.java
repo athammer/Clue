@@ -15,6 +15,8 @@ public class winnerGUI {
 
 	public winnerGUI(Player player) {
 		JFrame winner = new JFrame("Winner winner! Good job " + player.getCharacterName());
+		winner.setVisible(true);
+		winner.setSize(600, 600);
 		winner.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		winner.getContentPane().setBackground(Color.ORANGE);
 		
