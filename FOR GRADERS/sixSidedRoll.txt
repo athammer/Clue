@@ -1,8 +1,0 @@
-
-User Story #3 -- submit details in sixSidedRoll.txt
-	1.) * Include code to correctly generate random value for die/dice roll
-		int randomNum = rand.nextInt((6 - 1) + 1) + 1;
-	2.) * Program displays die/dice roll for Miss Scarlet when program begins
-		You can see when the game starts it starts off as Miss Scarlet's turn with a dice roll in the bottom right corner.
-	3.) * Program generates and displays new die/dice roll result for other players
-		Just spam end turn and you can seee it works.

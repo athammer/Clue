@@ -1,7 +1,0 @@
-User Story #2 -- submit details in boardVis.txt
-	1.) * Displays board when program starts
-		It does
-	2.) * Displays player locations when program start
-		Player starting locations are correct and can be located by looking at the colors.
-	3.) * Display updates when player location changes
-		It does. Move around and you can see this.

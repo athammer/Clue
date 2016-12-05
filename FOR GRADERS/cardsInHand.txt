@@ -1,9 +1,0 @@
-User Story #4 -- submit details in cardsInHand.txt
-	1.) * Shows Miss Scarlet's cards when program starts
-		We made it a button so you can see the cards as it was really annoying with the pop ups.
-	2.) * Updates card display at start of turn for each player
-		It is updated whenever new information is added, but it works correctly. Cards that are found by guesses are added to
-		"get all cards" and "get known cards".
-	3.) * Each card (not in solution) appears in only one players hand
-		Yup works you can check out all the players cards (easiest for two players) and see there is a total of 18(?) cards with 3
-		being in the middle as the 'secret' cards.

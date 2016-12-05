@@ -1,8 +1,0 @@
-
-User Story #6 -- submit details in suggest.txt
-	1.) * Allows player to enter a sugestion 
-		Yes it does, hit make a guess to prove this.
-	2.) * Requires suggestion to include weapon & player; forces player to use room they are in
-		Forces player to be in a room and makes the player guess what room they are in.
-	3.) * Only allows player to make suggestion when they are in a room
-		Yuppers
