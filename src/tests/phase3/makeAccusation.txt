@@ -1,0 +1,17 @@
+* Includes button, menu item, or other aspect of the GUI  to select "Make Accusation"
+Yup it does
+
+* When "Make Accusation" selected, provides window to enter accusation
+Yes it has a very pretty window
+
+
+* Window in which accusation entered includes way to specify the person, weapon, & room
+Ya lets you choose any weapon and person but only the room you are in.
+
+
+* Does not allow user to enter person, weapon, & room that is not part of game OR shows error when invalid person, weapon, or room entered
+Doesn't use a string input so we dodged that one, uses checkboxes :)
+
+
+* Window in which accusation entered includes button for user to select once accusation entered
+no clue what this is asking but im sure its there, is it asking for a submit button? if so we have the best submit button

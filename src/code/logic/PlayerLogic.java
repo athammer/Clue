@@ -30,6 +30,18 @@ public class PlayerLogic {
 		return null;	
 	}
 	
+	
+
+	public Player findActivePlayer(String name){
+		for(Player player : Main._activePlayers){
+			if(player.getCharacterName() == name){
+				//yay
+				return player;
+			}
+		}
+		return null;	
+	}
+	
 	//TODO Fill out Java doc
 	public boolean movePlayer(Board board, Player player, int x, int y, JButton btn){ //moves player to x and y
 		
@@ -90,8 +102,8 @@ public class PlayerLogic {
 			}
 
 		}else{
-			Main.gui.getConsoleLabel().setText("Invalid move!");
-			System.out.println("invalid move");
+			Main.gui.getConsoleLabel().setText("invalid move " + Main._currentPlayerTurn + "!");
+			System.out.println("invalid move " + Main._currentPlayerTurn + "!");
 			return false;
 		}	
 	}
@@ -146,19 +158,34 @@ public class PlayerLogic {
 	 * @return Returns the character's name that is to go next (that is still in the game.)
 	 */
 	public String whosNextTurn(String currentPlayerTurn){ //only players playing(no losers)
+		String name = currentPlayerTurn;
 		if(Main._activePlayers.size() == 1){
 			return Main._activePlayers.get(0).getCharacterName();
 		}
-		for(int i = 0; i < Main._activePlayers.size(); i++){
+		if(findActivePlayer(currentPlayerTurn) == null){ //player prob lost on their turn and is not playing anymore
+			for(int j = 0; j < Main._playerArray.size(); j++){
+				name = whosNext(name);
+				//System.out.println(name);
+				for(Player activePlayer : Main._activePlayers){
+					if(activePlayer.getCharacterName() == name){
+						return name;
+					}
+				}
+			}
 			
-			if(Main._activePlayers.get(i).getCharacterName().equals(currentPlayerTurn)){
+		}
+		for(int i = 0; i < Main._activePlayers.size(); i++){
+			if(Main._activePlayers.get(i).getCharacterName().equals(currentPlayerTurn)){ //wont work if player lost on his turn
 				if(!(i+1 < Main._activePlayers.size())){//if this is the last time if will run
 					//next player will be 0 as 0->1->2...->0 its circular
 					return Main._activePlayers.get(0).getCharacterName();
 				}
 				return Main._activePlayers.get(i+1).getCharacterName(); //shouldnt through an error due to if loop above
 			}
+
+			
 		}
+		System.out.println("didnt find anything");
 		return null;
 	}
 	

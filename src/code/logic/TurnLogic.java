@@ -45,7 +45,7 @@ public class TurnLogic {
 				LetGuessOnTurnEnd popUp = new LetGuessOnTurnEnd();
 			}
 			TimeUnit.SECONDS.sleep(1);
-			System.out.println(Main.reBounce);
+			//System.out.println(Main.reBounce);
 			i = i + 1;
 		}
 		

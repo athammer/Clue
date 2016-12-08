@@ -358,23 +358,23 @@ public class Board {
 			System.out.println("moving to special room");
 			//the above if statement checks if user is currently in a room they can teleport
 			//the stuff below allows people to tp using secret rooms
-			if(room.equals("kitchen") && newRoom.equals("study")){
+			if(room.equals("Kitchen") && newRoom.equals("Study")){
 				player.setMovesLeft(1); //set to one so users cant keep moving once tping
 				System.out.println("kitchen -> Study");
 				return true;
 			}
-			if(room.equals("study") && newRoom.equals("kitchen")){
-				System.out.println("study -> kitchen");
+			if(room.equals("Study") && newRoom.equals("Kitchen")){
+				System.out.println("Study -> Kitchen");
 				player.setMovesLeft(1);
 				return true;
 			}
-			if(room.equals("conservatory") && newRoom.equals("lounge")){
-				System.out.println("conservatory -> lounge");
+			if(room.equals("Conservatory") && newRoom.equals("Lounge")){
+				System.out.println("Conservatory -> Lounge");
 				player.setMovesLeft(1);
 				return true;
 			}
-			if(room.equals("lounge") && newRoom.equals("conservatory")){
-				System.out.println("lounge -> conservatory");
+			if(room.equals("Lounge") && newRoom.equals("Conservatory")){
+				System.out.println("Lounge -> Conservatory");
 				player.setMovesLeft(1);
 				return true;
 			}
@@ -430,31 +430,31 @@ public class Board {
 	public String getSpecialRoom(int x, int y){
 		//do sanity checking?
 		if((x == 3 && y == 6) || (x == 0 && y == 0)){
-			return "study";
+			return "Study";
 		}
 		if((x == 4 && y == 9) || (x == 6 && y == 11) || (x == 6 && y == 12)){
-			return "hall";
+			return "Hall";
 		}
 		if((x == 5 && y == 17) || (x == 0 && y == 23)){
-			return "lounge";
+			return "Lounge";
 		}
 		if((x == 8 && y == 6) || (x == 10 && y == 3)){
-			return "libary";
+			return "Libary";
 		}		
 		if((x == 9 && y == 17) || (x == 12 && y == 16)){
-			return "dining room";
+			return "Dining Room";
 		}
 		if((x == 12 && y == 1) || (x == 15 && y == 5)){
-			return "billard room";
+			return "Billard Room";
 		}
 		if((x == 19 && y == 4) || (x == 23 && y == 0)){ //
-			return "conservatory";
+			return "Conservatory";
 		}
 		if((x == 19 && y == 8) || (x == 19 && y == 15) || (x == 17 && y == 9) || (x == 17 && y == 14)){
-			return "ball room";
+			return "Ball Room";
 		}
 		if((x == 18 && y == 19) || (x == 23 && y == 23)){ //
-			return "kitchen";
+			return "Kitchen";
 		}
 		return null;
 	}
@@ -462,16 +462,16 @@ public class Board {
 	public String getSecretRoom(int x, int y){
 		//do sanity checking?
 		if((x == 3 && y == 6) || (x == 0 && y == 0)){
-			return "study";
+			return "Study";
 		}
 		if((x == 5 && y == 17) || (x == 0 && y == 23)){
-			return "lounge";
+			return "Lounge";
 		}
 		if((x == 19 && y == 4) || (x == 23 && y == 0)){ //
-			return "conservatory";
+			return "Conservatory";
 		}
 		if((x == 18 && y == 19) || (x == 23 && y == 23)){ //
-			return "kitchen";
+			return "Kitchen";
 		}
 		return null;
 	}

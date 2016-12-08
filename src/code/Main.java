@@ -22,8 +22,9 @@ import code.player.Player;
 
 public class Main {
 	
-	/*time constraints will lead to global varaibles....*/
+	/*time constraints will lead to global varaibles*/
 	public static Board board;
+	public static Deck deck;
 	public static GUI gui;
 	public static int reBounce = 0; //kinda
 	
@@ -49,7 +50,7 @@ public class Main {
 		System.out.println("==================================================");
 		System.out.println("==================================================");
 		System.out.println("=========================NOTICE THIS PLEASE=========================");
-		System.out.println("=========================NEEDS INPUT=========================");
+		System.out.println("=========================NEEDS INPUT(also dont hit resign its buggy it works 95% of the time=========================");
 		System.out.println("==================================================");
 		System.out.println("How many players are playing (no more then 6)? ");
 		Scanner scan = new Scanner(System.in); 
@@ -85,7 +86,7 @@ public class Main {
 			_playerArray.get(i).setXYCord(positon[0], positon[1]); //puts players in that position locally
 			board.setBoard(_playerArray.get(i).getCharacterName(), positon[0], positon[1]); //puts players in that for all players to see
 		}
-		Deck deck = new Deck();
+		deck = new Deck();
 		deck.createCrime();
 		deck.giveCards(); //gives players cards
 		_currentPlayerTurn = "Ms. Scarlet"; //who starts
@@ -93,11 +94,12 @@ public class Main {
 		gui = new GUI(board);
 		PlayerLogic pLogic = new PlayerLogic();
 		TurnLogic tL = new TurnLogic();
-		while(_activePlayers.size() != 1 && _activePlayers.contains(pLogic.findPlayer(_currentPlayerTurn))){
+		while(_activePlayers.size() != 1 /*&& _activePlayers.contains(pLogic.findPlayer(_currentPlayerTurn))*/){
 			Player currentPlayer = pLogic.findPlayer(_currentPlayerTurn);
 			gui.getPlayerName().setText(currentPlayer.getCharacterName());
 			tL.completeTurn(currentPlayer, board, gui);
 			_currentPlayerTurn = pLogic.whosNextTurn(_currentPlayerTurn);
+			System.out.println(_currentPlayerTurn);
 		}
 		winnerGUI annoying = new winnerGUI(_activePlayers.get(0));
 		

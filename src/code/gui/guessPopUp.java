@@ -97,7 +97,7 @@ public class guessPopUp implements ActionListener {
 		lblWeapons.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(lblWeapons);
 
-		JCheckBox weapon1 = new JCheckBox("Rope        ");
+		JCheckBox weapon1 = new JCheckBox("Rope");
 		checkBoxes.add(weapon1);
 		panel.add(weapon1);
 
@@ -105,11 +105,11 @@ public class guessPopUp implements ActionListener {
 		checkBoxes.add(weapon2);
 		panel.add(weapon2);
 
-		JCheckBox weapon3 = new JCheckBox("Knife        ");
+		JCheckBox weapon3 = new JCheckBox("Knife");
 		checkBoxes.add(weapon3);
 		panel.add(weapon3);
 
-		JCheckBox weapon4 = new JCheckBox("Wrench     ");
+		JCheckBox weapon4 = new JCheckBox("Wrench");
 		checkBoxes.add(weapon4);
 		panel.add(weapon4);
 
@@ -117,7 +117,7 @@ public class guessPopUp implements ActionListener {
 		checkBoxes.add(weapon5);
 		panel.add(weapon5);
 
-		JCheckBox weapon6 = new JCheckBox("Pistol    ");
+		JCheckBox weapon6 = new JCheckBox("Pistol");
 		checkBoxes.add(weapon6);
 		panel.add(weapon6);
 

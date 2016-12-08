@@ -1,0 +1,11 @@
+* Can correctly determines that accusation does not match answer printed to console at program start
+It tells you in game but ya we print the answers in console at the begining
+
+* Can display message in GUI stating player made an incorrect accusation
+yup, look at the thing at the top
+
+* Includes mechanism that prevents losing player from taking turns in game
+already done
+
+* Losing player's cards can continue to be used to disprove suggestion
+players cards dont get removed so this will /probably/ work

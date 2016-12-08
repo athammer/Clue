@@ -1,0 +1,7 @@
+* Can correctly determines that accusation matches answer printed to console at program start
+After you type in how many players you want you will see the a person, weapon, and place.
+
+
+
+* Can display congratulatory message in GUI to game winner for making correct accusation
+we have it, :D

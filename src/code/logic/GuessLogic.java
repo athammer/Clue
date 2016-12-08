@@ -89,11 +89,12 @@ Your opponents may continue to move your token into the various Rooms where they
 	 * @throws Exception 
 	 */
 	public boolean makeAFinalGuess(ArrayList<String> guessCards, Player player, String roomName, Board board){
-		if(!(makeAGuess(guessCards, player, roomName))){
+		if(cardsEqual(guessCards)){
 			//player wins
 			ArrayList<Player> winnerPlayer = new ArrayList<Player>();
 			for(Player player1 : Main._activePlayers){
 				if(player.equals(player1)){
+					Main.deck.getCrimeCards();
 					System.out.println("player wins");
 					winnerPlayer.add(player1); //winner
 					winnerGUI annoying = new winnerGUI(player);
@@ -119,6 +120,7 @@ Your opponents may continue to move your token into the various Rooms where they
 		//Check if player is in the room where the 
 		Main.reBounce = 1;
 		System.out.println(Main.reBounce);
+		Main.gui.getConsoleLabel().setText("You lost " + player.getCharacterName() + "!");
 		return false;
 		
 	}
@@ -161,6 +163,27 @@ Your opponents may continue to move your token into the various Rooms where they
 		}
 		return false;
 		
+	}
+	
+	//checks if cards out of order are equal
+	private boolean cardsEqual(ArrayList<String> guessCards){
+		int check = 0;
+		if(guessCards.size() == 3){
+			//good
+			System.out.println("3 cards foudn good");
+			for(String card : guessCards){
+				System.out.println(card);
+				if(Main.deck.getCrimeCards().contains(card)){
+					check += 1;
+					System.out.println("check + 1");
+				}
+			}
+		}
+		if(check == 3){
+			return true;
+		}
+		System.out.println(check);
+		return false;
 	}
 
 }
