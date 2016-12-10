@@ -1,6 +1,0 @@
-Note: 	don't hit resign it works sometimes and isn't done yet. also our help page isn't done yet either. 
-		also older versions of java might not run this just saying
-		also if you could please guess when you get a popup for a guess when you didnt hit the guess bottun. I didn't add a close
-		button and it will break if you don't. i'll fix this when you are grading for bugs i swear.
-	
-If you are looking for the jUnit tests they are in the test folder.

@@ -10,12 +10,9 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
-import code.DiceActionListener;
-import code.DiceActionListener2;
 import code.Main;
 import code.board.Board;
 import code.player.Player;
-import code.gui.actionListener.onClickActionListener;
 import code.logic.PlayerLogic;
 
 import javax.swing.border.LineBorder;
